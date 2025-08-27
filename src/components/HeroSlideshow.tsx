@@ -91,10 +91,16 @@ const HeroSlideshow: React.FC = () => {
               className="w-full h-full bg-cover bg-center relative overflow-hidden"
               style={{
                 backgroundImage: `url(${image})`,
-                // Ensure no unwanted lines appear on first image
-                backgroundPosition: index === 0 ? 'center 30%' : 'center center',
+                // Ensure no unwanted lines appear on first image - crop top portion on all devices
+                backgroundPosition: index === 0 ? 'center 20%' : 'center center',
                 backgroundRepeat: 'no-repeat',
-                backgroundSize: 'cover'
+                backgroundSize: 'cover',
+                // Force proper sizing and positioning for first image
+                ...(index === 0 && {
+                  backgroundPosition: 'center 20%',
+                  backgroundSize: 'cover',
+                  objectFit: 'cover'
+                })
               }}
             >
               {/* Luxury overlay gradient */}
