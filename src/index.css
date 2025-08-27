@@ -68,9 +68,9 @@ All colors MUST be HSL.
     
     /* Typography Scale */
     --font-display: 'Poppins', sans-serif;
-    --font-display-ar: 'Noto Kufi Arabic', sans-serif;
+    --font-display-ar: 'Reem Kufi', sans-serif;
     --font-body: 'Poppins', sans-serif;
-    --font-body-ar: 'Noto Kufi Arabic', sans-serif;
+    --font-body-ar: 'Reem Kufi', sans-serif;
 
     --sidebar-background: 139 35% 14%; /* deep green */
     --sidebar-foreground: 0 0% 100%; /* white */
@@ -290,7 +290,7 @@ img {
   will-change: opacity, transform;
 }
 
-/* Font optimization for Poppins and Noto Kufi Arabic */
+/* Font optimization for Poppins and Reem Kufi */
 .font-display, .font-body {
   font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
   text-rendering: optimizeLegibility;
@@ -311,11 +311,11 @@ img {
 }
 
 .font-display-ar {
-  font-family: 'Noto Kufi Arabic', 'Amiri', 'IBM Plex Sans Arabic', sans-serif;
+  font-family: 'Reem Kufi', 'Amiri', 'IBM Plex Sans Arabic', sans-serif;
 }
 
 .font-body-ar {
-  font-family: 'Noto Kufi Arabic', 'Amiri', 'IBM Plex Sans Arabic', sans-serif;
+  font-family: 'Reem Kufi', 'Amiri', 'IBM Plex Sans Arabic', sans-serif;
 }
 
 /* RTL Support for slide indicators */
