@@ -87,8 +87,7 @@ const HeroSlideshow: React.FC = () => {
               {/* Luxury overlay gradient */}
               <div className="absolute inset-0 bg-gradient-to-br from-black/20 via-transparent to-black/40" />
               
-              {/* Subtle vignette effect */}
-              <div className="absolute inset-0 bg-radial-gradient from-transparent via-transparent to-black/30" />
+              {/* Removed problematic vignette effect that was causing gray line */}
               
               {/* Animated light rays */}
               <div className="absolute inset-0 opacity-30">
@@ -100,16 +99,16 @@ const HeroSlideshow: React.FC = () => {
         ))}
       </div>
 
-      {/* Navigation arrows */}
+      {/* Navigation arrows - improved mobile positioning */}
       <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 z-20">
         <button
           onClick={prevSlide}
           disabled={isTransitioning}
-          className={`absolute w-16 h-16 flex items-center justify-center text-white/40 hover:text-white/80 transition-all duration-500 ease-out group disabled:opacity-30 disabled:cursor-not-allowed ${
-            isRTL ? 'right-12' : 'left-12'
+          className={`absolute w-12 h-12 md:w-16 md:h-16 flex items-center justify-center text-white/40 hover:text-white/80 transition-all duration-500 ease-out group disabled:opacity-30 disabled:cursor-not-allowed ${
+            isRTL ? 'right-2 md:right-12' : 'left-2 md:left-12'
           }`}
         >
-          <svg className={`w-8 h-8 transform transition-all duration-500 ease-out ${
+          <svg className={`w-6 h-6 md:w-8 md:h-8 transform transition-all duration-500 ease-out ${
             isRTL ? 'rotate-180 group-hover:scale-110' : 'group-hover:scale-110'
           }`} fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5">
             <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
@@ -119,11 +118,11 @@ const HeroSlideshow: React.FC = () => {
         <button
           onClick={nextSlide}
           disabled={isTransitioning}
-          className={`absolute w-16 h-16 flex items-center justify-center text-white/40 hover:text-white/80 transition-all duration-500 ease-out group disabled:opacity-30 disabled:cursor-not-allowed ${
-            isRTL ? 'left-12' : 'right-12'
+          className={`absolute w-12 h-12 md:w-16 md:h-16 flex items-center justify-center text-white/40 hover:text-white/80 transition-all duration-500 ease-out group disabled:opacity-30 disabled:cursor-not-allowed ${
+            isRTL ? 'left-2 md:left-12' : 'right-2 md:right-12'
           }`}
         >
-          <svg className={`w-8 h-8 transform transition-all duration-500 ease-out ${
+          <svg className={`w-6 h-6 md:w-8 md:h-8 transform transition-all duration-500 ease-out ${
             isRTL ? 'rotate-180 group-hover:scale-110' : 'group-hover:scale-110'
           }`} fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5">
             <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
