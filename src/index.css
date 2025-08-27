@@ -101,7 +101,7 @@ All colors MUST be HSL.
   body {
     @apply bg-black text-foreground;
     font-family: var(--font-body);
-    font-weight: 500;
+    font-weight: 600;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background-color: black;
@@ -123,7 +123,7 @@ All colors MUST be HSL.
   /* Apply display fonts to headings */
   h1, h2, h3 {
     font-family: var(--font-display);
-    font-weight: 600;
+    font-weight: 700;
   }
 
   /* Ensure root element is black */
@@ -145,7 +145,7 @@ All colors MUST be HSL.
   /* Ensure specific elements use correct fonts */
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
-    font-weight: 600;
+    font-weight: 700;
   }
 
   p, span, div, a, button, input, textarea, label, li, td, th {
@@ -164,14 +164,14 @@ All colors MUST be HSL.
   /* Display Typography */
   .font-display {
     font-family: var(--font-display);
-    font-weight: 600;
+    font-weight: 700;
     letter-spacing: 0.01em;
     line-height: 1.4;
   }
   
   .font-display-ar {
     font-family: var(--font-display-ar);
-    font-weight: 600;
+    font-weight: 700;
     letter-spacing: 0.01em;
     line-height: 1.4;
   }
@@ -368,12 +368,14 @@ img {
 /* FINAL GLOBAL FONT APPLICATION - HIGH SPECIFICITY */
 html *, body *, #root * {
   font-family: var(--font-body) !important;
+  font-weight: 600 !important;
 }
 
 html h1, html h2, html h3, html h4, html h5, html h6,
 body h1, body h2, body h3, body h4, body h5, body h6,
 #root h1, #root h2, #root h3, #root h4, #root h5, #root h6 {
   font-family: var(--font-display) !important;
+  font-weight: 700 !important;
 }
 
 /* Mobile-specific logo sizing - HIGH PRIORITY */
@@ -484,6 +486,7 @@ body h1, body h2, body h3, body h4, body h5, body h6,
 html[dir="rtl"] *, body[dir="rtl"] *, #root[dir="rtl"] *,
 html [dir="rtl"] *, body [dir="rtl"] *, #root [dir="rtl"] * {
   font-family: var(--font-body-ar) !important;
+  font-weight: 600 !important;
 }
 
 html[dir="rtl"] h1, html[dir="rtl"] h2, html[dir="rtl"] h3, html[dir="rtl"] h4, html[dir="rtl"] h5, html[dir="rtl"] h6,
@@ -493,6 +496,7 @@ html [dir="rtl"] h1, html [dir="rtl"] h2, html [dir="rtl"] h3, html [dir="rtl"] 
 body [dir="rtl"] h1, body [dir="rtl"] h2, body [dir="rtl"] h3, body [dir="rtl"] h4, body [dir="rtl"] h5, body [dir="rtl"] h6,
 #root [dir="rtl"] h1, #root [dir="rtl"] h2, #root [dir="rtl"] h3, #root [dir="rtl"] h4, #root [dir="rtl"] h5, #root [dir="rtl"] h6 {
   font-family: var(--font-display-ar) !important;
+  font-weight: 700 !important;
 }
 
 /* Additional Arabic font enforcement */
