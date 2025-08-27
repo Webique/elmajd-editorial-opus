@@ -137,9 +137,9 @@ const HeroSlideshow: React.FC = () => {
     <section className="relative w-full h-[70vh] md:h-screen overflow-hidden bg-black">
       {/* Main slideshow */}
       <div className="relative w-full h-full">
-        {images.map((image, index) => (
-          <div
-            key={index}
+      {images.map((image, index) => (
+        <div
+          key={index}
             ref={el => imageRefs.current[index] = el}
             className={`absolute inset-0 transition-all duration-1000 ease-out ${
               index === currentIndex 
@@ -278,7 +278,7 @@ const HeroSlideshow: React.FC = () => {
             }}
           />
         ))}
-      </div>
+        </div>
     </section>
   );
 };

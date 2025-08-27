@@ -42,9 +42,9 @@ const Services: React.FC = () => {
             </h2>
             
             {/* Bottom luxury divider */}
-            <div className="flex items-center justify-center space-x-4">
+            <div className="flex items-center justify-center">
               <div className="w-16 h-px bg-gradient-to-r from-transparent via-white/60 to-transparent"></div>
-              <div className="w-2 h-2 bg-white/80 rounded-full"></div>
+              <div className={`w-2 h-2 bg-white/80 rounded-full mx-4`}></div>
               <div className="w-16 h-px bg-gradient-to-r from-transparent via-white/60 to-transparent"></div>
             </div>
           </div>
@@ -76,9 +76,9 @@ const Services: React.FC = () => {
         <div className="text-center mt-20 mb-16">
           <div className="inline-block">
             {/* Top luxury divider */}
-            <div className="flex items-center justify-center space-x-4 mb-8">
+            <div className="flex items-center justify-center mb-8">
               <div className="w-16 h-px bg-gradient-to-r from-transparent via-white/60 to-transparent"></div>
-              <div className="w-2 h-2 bg-white/80 rounded-full"></div>
+              <div className={`w-2 h-2 bg-white/80 rounded-full mx-4`}></div>
               <div className="w-16 h-px bg-gradient-to-r from-transparent via-white/60 to-transparent"></div>
             </div>
             
@@ -100,9 +100,9 @@ const Services: React.FC = () => {
             </a>
             
             {/* Bottom luxury divider */}
-            <div className="flex items-center justify-center space-x-4 mt-8">
+            <div className="flex items-center justify-center mt-8">
               <div className="w-16 h-px bg-gradient-to-r from-transparent via-white/60 to-transparent"></div>
-              <div className="w-2 h-2 bg-white/80 rounded-full"></div>
+              <div className={`w-2 h-2 bg-white/80 rounded-full mx-4`}></div>
               <div className="w-16 h-px bg-gradient-to-r from-transparent via-white/60 to-transparent"></div>
             </div>
           </div>
