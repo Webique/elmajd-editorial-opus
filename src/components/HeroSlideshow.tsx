@@ -18,6 +18,15 @@ const HeroSlideshow: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [direction, setDirection] = useState<'next' | 'prev'>('next');
+  const [isInitialized, setIsInitialized] = useState(false);
+
+  // Initialize component properly to prevent visual artifacts
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsInitialized(true);
+    }, 100);
+    return () => clearTimeout(timer);
+  }, []);
 
   const nextSlide = useCallback(() => {
     if (!isTransitioning) {
@@ -64,9 +73,9 @@ const HeroSlideshow: React.FC = () => {
     <section className="relative w-full h-[70vh] md:h-screen overflow-hidden bg-black">
       {/* Main slideshow */}
       <div className="relative w-full h-full">
-      {images.map((image, index) => (
-        <div
-          key={index}
+        {images.map((image, index) => (
+          <div
+            key={index}
             className={`absolute inset-0 transition-all duration-1000 ease-out ${
               index === currentIndex 
                 ? 'opacity-100 scale-100 translate-x-0' 
@@ -82,12 +91,14 @@ const HeroSlideshow: React.FC = () => {
               className="w-full h-full bg-cover bg-center relative overflow-hidden"
               style={{
                 backgroundImage: `url(${image})`,
+                // Ensure no unwanted lines appear on first image
+                backgroundPosition: 'center center',
+                backgroundRepeat: 'no-repeat',
+                backgroundSize: 'cover'
               }}
             >
               {/* Luxury overlay gradient */}
               <div className="absolute inset-0 bg-gradient-to-br from-black/20 via-transparent to-black/40" />
-              
-              {/* Removed problematic vignette effect that was causing gray line */}
               
               {/* Animated light rays */}
               <div className="absolute inset-0 opacity-30">
@@ -193,7 +204,7 @@ const HeroSlideshow: React.FC = () => {
             }}
           />
         ))}
-        </div>
+      </div>
     </section>
   );
 };
