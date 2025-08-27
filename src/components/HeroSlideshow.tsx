@@ -92,7 +92,7 @@ const HeroSlideshow: React.FC = () => {
               style={{
                 backgroundImage: `url(${image})`,
                 // Ensure no unwanted lines appear on first image
-                backgroundPosition: 'center center',
+                backgroundPosition: index === 0 ? 'center 30%' : 'center center',
                 backgroundRepeat: 'no-repeat',
                 backgroundSize: 'cover'
               }}
