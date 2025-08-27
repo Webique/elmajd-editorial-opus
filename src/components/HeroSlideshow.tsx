@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import logo from '@/assets/logo1.png';
 import hero1 from '@/assets/1.webp';
@@ -18,103 +18,30 @@ const HeroSlideshow: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [direction, setDirection] = useState<'next' | 'prev'>('next');
-  const [imagesLoaded, setImagesLoaded] = useState(false);
-  const [loadedImages, setLoadedImages] = useState<Set<string>>(new Set());
-  const [imageQualities, setImageQualities] = useState<Map<string, string>>(new Map());
-  const imageRefs = useRef<(HTMLDivElement | null)[]>([]);
-
-  // Ultra-fast loading with progressive enhancement
-  useEffect(() => {
-    const preloadImages = async () => {
-      // Start slideshow immediately with first image
-      setImagesLoaded(true);
-      
-      // Progressive loading strategy with WebP fallback
-      const loadImage = (src: string, index: number): Promise<string> => {
-        return new Promise((resolve, reject) => {
-          const img = new Image();
-          
-          // Start with low quality for immediate display
-          img.onload = () => {
-            setLoadedImages(prev => new Set(prev).add(src));
-            
-            // Mark as loaded in the DOM
-            if (imageRefs.current[index]) {
-              imageRefs.current[index]?.classList.add('image-loaded');
-            }
-            
-            resolve(src);
-          };
-          
-          img.onerror = () => {
-            // WebP fallback to JPG if needed
-            const fallbackSrc = src.replace('.webp', '.jpg');
-            if (fallbackSrc !== src) {
-              img.src = fallbackSrc;
-            } else {
-              reject(new Error('Image failed to load'));
-            }
-          };
-          
-          // Use fetch for better control and caching
-          fetch(src, { 
-            cache: 'force-cache',
-            priority: index === 0 ? 'high' : 'low'
-          })
-            .then(response => {
-              if (response.ok) {
-                return response.blob();
-              }
-              throw new Error('Image fetch failed');
-            })
-            .then(blob => {
-              const objectURL = URL.createObjectURL(blob);
-              img.src = objectURL;
-            })
-            .catch(() => {
-              // Fallback to direct loading
-              img.src = src;
-            });
-        });
-      };
-
-      // Load first image immediately, others in parallel
-      await loadImage(images[0], 0);
-      
-      // Load remaining images in background with priority
-      Promise.allSettled(
-        images.slice(1).map((img, idx) => loadImage(img, idx + 1))
-      );
-    };
-
-    preloadImages();
-  }, []);
 
   const nextSlide = useCallback(() => {
-    if (!isTransitioning && imagesLoaded) {
+    if (!isTransitioning) {
       setIsTransitioning(true);
       setDirection('next');
       setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
     }
-  }, [isTransitioning, imagesLoaded]);
+  }, [isTransitioning]);
 
   const prevSlide = useCallback(() => {
-    if (!isTransitioning && imagesLoaded) {
+    if (!isTransitioning) {
       setIsTransitioning(true);
       setDirection('prev');
       setCurrentIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
     }
-  }, [isTransitioning, imagesLoaded]);
+  }, [isTransitioning]);
 
   useEffect(() => {
-    if (!imagesLoaded) return;
-
     const interval = setInterval(() => {
       nextSlide();
     }, 8000);
 
     return () => clearInterval(interval);
-  }, [nextSlide, imagesLoaded]);
+  }, [nextSlide]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -137,10 +64,9 @@ const HeroSlideshow: React.FC = () => {
     <section className="relative w-full h-[70vh] md:h-screen overflow-hidden bg-black">
       {/* Main slideshow */}
       <div className="relative w-full h-full">
-      {images.map((image, index) => (
-        <div
-          key={index}
-            ref={el => imageRefs.current[index] = el}
+        {images.map((image, index) => (
+          <div
+            key={index}
             className={`absolute inset-0 transition-all duration-1000 ease-out ${
               index === currentIndex 
                 ? 'opacity-100 scale-100 translate-x-0' 
@@ -151,22 +77,13 @@ const HeroSlideshow: React.FC = () => {
                 : 'opacity-0 scale-90 translate-x-0'
             }`}
           >
-            {/* Background image with luxury effects and progressive loading */}
+            {/* Background image with luxury effects */}
             <div
               className="w-full h-full bg-cover bg-center relative overflow-hidden"
               style={{
                 backgroundImage: `url(${image})`,
               }}
             >
-              {/* Progressive loading overlay */}
-              <div className={`absolute inset-0 bg-black transition-opacity duration-500 ${
-                loadedImages.has(image) ? 'opacity-0' : 'opacity-100'
-              }`}>
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-8 h-8 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-                </div>
-              </div>
-              
               {/* Luxury overlay gradient */}
               <div className="absolute inset-0 bg-gradient-to-br from-black/20 via-transparent to-black/40" />
               
@@ -278,7 +195,7 @@ const HeroSlideshow: React.FC = () => {
             }}
           />
         ))}
-        </div>
+      </div>
     </section>
   );
 };
