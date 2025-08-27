@@ -420,10 +420,45 @@ body h1, body h2, body h3, body h4, body h5, body h6,
   }
   
   .hero-logo img {
-    height: 70vh !important;
+    height: 65vh !important;
     width: auto !important;
-    max-height: 70vh !important;
-    min-height: 70vh !important;
+    max-height: 65vh !important;
+    min-height: 65vh !important;
+  }
+}
+
+/* ULTRA AGGRESSIVE MOBILE OVERRIDE */
+@media (max-width: 768px) {
+  .hero-logo img,
+  .hero-logo img[src*="logo"],
+  img[alt="ELMAJD GROUP"],
+  .hero-logo img[style*="height"] {
+    height: 65vh !important;
+    width: auto !important;
+    max-height: 65vh !important;
+    min-height: 65vh !important;
+    transform: scale(1.2) !important;
+    zoom: 1.2 !important;
+  }
+}
+
+/* NUCLEAR OPTION - Force mobile logo size */
+@media (max-width: 768px) {
+  img[src*="logo1.png"],
+  img[alt="ELMAJD GROUP"],
+  .hero-logo img,
+  .hero-logo img[src*="logo"],
+  img[src*="logo"],
+  img[src*="logo1"],
+  img[src*="logo1.png"] {
+    height: 80vh !important;
+    width: auto !important;
+    max-height: 80vh !important;
+    min-height: 80vh !important;
+    transform: scale(1.5) !important;
+    zoom: 1.5 !important;
+    font-size: 80vh !important;
+    line-height: 80vh !important;
   }
 }
 

@@ -171,9 +171,9 @@ const HeroSlideshow: React.FC = () => {
           className="h-[28rem] md:h-56 w-auto object-contain fade-in drop-shadow-lg"
           style={{ 
             animationDelay: '200ms',
-            height: '800px',
-            maxHeight: '800px',
-            minHeight: '800px',
+            height: '75vh',
+            maxHeight: '75vh',
+            minHeight: '75vh',
             transform: 'scale(1.5)'
           }}
         />
