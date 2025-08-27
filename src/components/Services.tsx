@@ -31,7 +31,7 @@ const Services: React.FC = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="pt-section-sm pb-16 bg-surface-soft">
+    <section ref={sectionRef} className="pt-section-sm pb-16 bg-surface-soft section-connector">
       <div className="container mx-auto px-6 max-w-4xl">
         {/* Luxury Services Title */}
         <div className="text-center mb-16">

@@ -7,6 +7,21 @@ Mysterious, editorial aesthetic with minimal interactions.
 All colors MUST be HSL.
 */
 
+/* Font loading optimization */
+@font-face {
+  font-family: 'Poppins';
+  font-display: swap;
+  font-weight: 300 700;
+  src: url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+}
+
+@font-face {
+  font-family: 'Noto Kufi Arabic';
+  font-display: swap;
+  font-weight: 300 700;
+  src: url('https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@300;400;500;600;700&display=swap');
+}
+
 @layer base {
   :root {
     /* Core Brand Colors */
@@ -52,34 +67,28 @@ All colors MUST be HSL.
     --ease-luxury: cubic-bezier(0.22, 0.61, 0.36, 1);
     
     /* Typography Scale */
-    --font-display: 'Playfair Display', serif;
-    --font-display-ar: 'Amiri', serif;
-    --font-body: 'Helvetica Neue', 'Arial', sans-serif;
-    --font-body-ar: 'IBM Plex Sans Arabic', sans-serif;
+    --font-display: 'Poppins', sans-serif;
+    --font-display-ar: 'Noto Kufi Arabic', sans-serif;
+    --font-body: 'Poppins', sans-serif;
+    --font-body-ar: 'Noto Kufi Arabic', sans-serif;
 
     --sidebar-background: 139 35% 14%; /* deep green */
-
     --sidebar-foreground: 0 0% 100%; /* white */
-
     --sidebar-primary: 139 35% 14%; /* deep green */
-
     --sidebar-primary-foreground: 0 0% 100%; /* white */
-
     --sidebar-accent: 139 35% 14%; /* deep green */
-
     --sidebar-accent-foreground: 0 0% 100%; /* white */
-
     --sidebar-border: 0 0% 100%; /* white */
-
     --sidebar-ring: 0 0% 100%; /* white */
   }
 
-  /* No dark mode - luxury sites stay consistent */
-}
-
-@layer base {
   * {
     @apply border-border;
+  }
+
+  /* Global font application for entire website */
+  html, body, #root, * {
+    font-family: var(--font-body);
   }
 
   html {
@@ -92,13 +101,28 @@ All colors MUST be HSL.
   body {
     @apply bg-black text-foreground;
     font-family: var(--font-body);
-    font-weight: 300;
+    font-weight: 400;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background-color: black;
     margin: 0;
     padding: 0;
     min-height: 100vh;
+  }
+
+  /* Global font application */
+  * {
+    font-family: inherit;
+  }
+
+  /* Ensure all text elements use the correct fonts */
+  h1, h2, h3, h4, h5, h6, p, span, div, a, button, input, textarea, label {
+    font-family: var(--font-body);
+  }
+
+  /* Apply display fonts to headings */
+  h1, h2, h3 {
+    font-family: var(--font-display);
   }
 
   /* Ensure root element is black */
@@ -111,19 +135,42 @@ All colors MUST be HSL.
   [dir="rtl"] {
     font-family: var(--font-body-ar);
   }
+
+  /* Comprehensive font application for all elements */
+  *, *::before, *::after {
+    font-family: var(--font-body);
+  }
+
+  /* Ensure specific elements use correct fonts */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+  }
+
+  p, span, div, a, button, input, textarea, label, li, td, th {
+    font-family: var(--font-body);
+  }
+
+  /* Force font application to override any conflicting styles */
+  .font-display, h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display) !important;
+  }
+
+  .font-body, p, span, div, a, button, input, textarea, label, li, td, th {
+    font-family: var(--font-body) !important;
+  }
   
   /* Display Typography */
   .font-display {
     font-family: var(--font-display);
-    font-weight: 400;
-    letter-spacing: 0.02em;
-    line-height: 1.3;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    line-height: 1.4;
   }
   
   .font-display-ar {
     font-family: var(--font-display-ar);
-    font-weight: 400;
-    letter-spacing: -0.01em;
+    font-weight: 500;
+    letter-spacing: 0.01em;
     line-height: 1.4;
   }
   
@@ -241,6 +288,34 @@ img {
   will-change: opacity, transform;
 }
 
+/* Font optimization for Poppins and Noto Kufi Arabic */
+.font-display, .font-body {
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+  text-rendering: optimizeLegibility;
+}
+
+.font-display-ar, .font-body-ar {
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+  text-rendering: optimizeLegibility;
+}
+
+/* Ensure proper font fallbacks */
+.font-display {
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.font-body {
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.font-display-ar {
+  font-family: 'Noto Kufi Arabic', 'Amiri', 'IBM Plex Sans Arabic', sans-serif;
+}
+
+.font-body-ar {
+  font-family: 'Noto Kufi Arabic', 'Amiri', 'IBM Plex Sans Arabic', sans-serif;
+}
+
 /* RTL Support for slide indicators */
 [dir="rtl"] .slide-indicators {
   flex-direction: row-reverse;
@@ -249,4 +324,61 @@ img {
 [dir="rtl"] .slide-indicators > * + * {
   margin-right: 0.75rem;
   margin-left: 0;
+}
+
+/* Smooth scroll transition effects */
+.scroll-transition {
+  transition: all 0.8s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+/* Enhanced visual connection between sections */
+.section-connector {
+  position: relative;
+  overflow: hidden;
+}
+
+.section-connector::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1px;
+  height: 100px;
+  background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.6), transparent);
+  z-index: 10;
+}
+
+/* Smooth fade transition for hero elements */
+.hero-text-transition {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: heroTextFadeIn 1.2s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+}
+
+@keyframes heroTextFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* FINAL GLOBAL FONT APPLICATION - HIGH SPECIFICITY */
+html *, body *, #root * {
+  font-family: var(--font-body) !important;
+}
+
+html h1, html h2, html h3, html h4, html h5, html h6,
+body h1, body h2, body h3, body h4, body h5, body h6,
+#root h1, #root h2, #root h3, #root h4, #root h5, #root h6 {
+  font-family: var(--font-display) !important;
+}
+
+/* Ensure Arabic fonts are applied when language is Arabic */
+[dir="rtl"] * {
+  font-family: var(--font-body-ar) !important;
+}
+
+[dir="rtl"] h1, [dir="rtl"] h2, [dir="rtl"] h3, [dir="rtl"] h4, [dir="rtl"] h5, [dir="rtl"] h6 {
+  font-family: var(--font-display-ar) !important;
 }

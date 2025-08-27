@@ -1,6 +1,5 @@
 import React from 'react';
 import { LanguageProvider } from '@/contexts/LanguageContext';
-import Header from '@/components/Header';
 import HeroSlideshow from '@/components/HeroSlideshow';
 import Slogan from '@/components/Slogan';
 import Services from '@/components/Services';
@@ -11,7 +10,6 @@ const Index = () => {
   return (
     <LanguageProvider>
       <div className="min-h-screen bg-black overflow-x-hidden">
-        <Header />
         <main>
           <HeroSlideshow />
           <Slogan />

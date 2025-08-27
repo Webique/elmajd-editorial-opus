@@ -56,9 +56,19 @@ const Contact: React.FC = () => {
           </div>
           
           {/* Company name - understated */}
-          <div className="text-center pt-8">
-            <div className="text-white/70 text-sm font-light tracking-wide opacity-60 slide-up" style={{ animationDelay: '400ms' }}>
-              ELMAJD GROUP
+          <div className="text-center pt-8 space-y-4">
+            <div className="text-white/70 text-lg font-medium tracking-wide opacity-80 slide-up" style={{ animationDelay: '400ms' }}>
+              {language === 'ar' ? 'اسس بناء المجد' : 'Osus Benaa Elmajd'}
+            </div>
+            
+            {/* Commercial Registration Number */}
+            <div className="text-white/60 text-sm font-light tracking-wide opacity-70 slide-up" style={{ animationDelay: '500ms' }}>
+              {language === 'ar' ? 'رقم السجل التجاري' : 'Commercial Registration No.'}: 7050393151
+            </div>
+            
+            {/* Tax Registration Number */}
+            <div className="text-white/60 text-sm font-light tracking-wide opacity-70 slide-up" style={{ animationDelay: '600ms' }}>
+              {language === 'ar' ? 'رقم السجل الضريبي' : 'Tax Registration No.'}: 311873924300003
             </div>
           </div>
         </div>

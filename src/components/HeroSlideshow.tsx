@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import logo from '@/assets/logo1.png';
 import hero1 from '@/assets/1.png';
 import hero2 from '@/assets/2.png';
 import hero3 from '@/assets/3.png';
@@ -181,6 +182,24 @@ const HeroSlideshow: React.FC = () => {
         </button>
       </div>
 
+      {/* Logo positioned at top center */}
+      <div className="absolute top-8 left-1/2 transform -translate-x-1/2 z-30">
+        <img 
+          src={logo} 
+          alt="ELMAJD GROUP" 
+          className="h-40 md:h-48 w-auto fade-in drop-shadow-lg"
+          style={{ animationDelay: '200ms' }}
+        />
+      </div>
+
+      {/* Services text and line at bottom */}
+      <div className="absolute left-1/2 bottom-6 transform -translate-x-1/2 z-20 text-center">
+        <h2 className="text-2xl md:text-4xl font-bold text-white mb-6 hero-text-transition drop-shadow-lg" style={{ animationDelay: '400ms' }}>
+          {language === 'ar' ? 'خدماتنا' : 'Our Services'}
+        </h2>
+        <div className="w-px h-32 bg-gradient-to-b from-white/80 via-white/60 to-transparent mx-auto hero-text-transition" style={{ animationDelay: '600ms' }}></div>
+      </div>
+
       {/* Progress bar */}
       <div className="absolute bottom-0 left-0 w-full h-1 bg-white/20 z-20">
         <div 
@@ -190,6 +209,11 @@ const HeroSlideshow: React.FC = () => {
             transitionDuration: isTransitioning ? '0ms' : '8000ms'
           }}
         />
+      </div>
+
+      {/* Scroll indicator */}
+      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-20 text-center">
+        <div className="w-px h-12 bg-gradient-to-b from-white/90 via-white/70 to-transparent mx-auto animate-pulse"></div>
       </div>
 
       {/* Floating particles effect */}
