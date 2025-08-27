@@ -31,7 +31,7 @@ const Services: React.FC = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="pt-section-sm pb-16 bg-surface-soft section-connector">
+    <section ref={sectionRef} className="pt-8 pb-16 bg-surface-soft section-connector">
       <div className="container mx-auto px-6 max-w-4xl">
         {/* Luxury Services Title */}
         <div className="text-center mb-16">
@@ -77,6 +77,42 @@ const Services: React.FC = () => {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Consultation Booking Section */}
+        <div className="text-center mt-20 mb-16">
+          <div className="inline-block">
+            {/* Top luxury divider */}
+            <div className="flex items-center justify-center space-x-4 mb-8">
+              <div className="w-16 h-px bg-gradient-to-r from-transparent via-white/60 to-transparent"></div>
+              <div className="w-2 h-2 bg-white/80 rounded-full"></div>
+              <div className="w-16 h-px bg-gradient-to-r from-transparent via-white/60 to-transparent"></div>
+            </div>
+            
+            {/* Consultation title */}
+            <h3 className="font-display text-2xl md:text-3xl text-white font-light tracking-wide mb-8">
+              {language === 'ar' ? 'احجز استشارة' : 'Book a Consultation'}
+            </h3>
+            
+            {/* Consultation button */}
+            <a
+              href="https://docs.google.com/forms/d/e/1FAIpQLSeEiVmtCp6q-wCDpwIB9viTA6ALk3Zwab2SdFtHPdgE90iBIA/viewform?usp=preview"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block px-8 py-4 border border-white/30 bg-white/5 hover:bg-white/10 transition-all duration-300 ease-luxury group"
+            >
+              <span className="text-white font-medium tracking-wide group-hover:tracking-wider transition-all duration-300">
+                {language === 'ar' ? 'احجز الآن' : 'Book Now'}
+              </span>
+            </a>
+            
+            {/* Bottom luxury divider */}
+            <div className="flex items-center justify-center space-x-4 mt-8">
+              <div className="w-16 h-px bg-gradient-to-r from-transparent via-white/60 to-transparent"></div>
+              <div className="w-2 h-2 bg-white/80 rounded-full"></div>
+              <div className="w-16 h-px bg-gradient-to-r from-transparent via-white/60 to-transparent"></div>
+            </div>
+          </div>
         </div>
 
         {/* Bottom luxury divider */}

@@ -1,16 +1,17 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import logo from '@/assets/logo1.png';
-import hero1 from '@/assets/1.png';
-import hero2 from '@/assets/2.png';
-import hero3 from '@/assets/3.png';
-import hero4 from '@/assets/4.png';
-import hero5 from '@/assets/5.png';
-import hero6 from '@/assets/6.png';
-import hero7 from '@/assets/7.png';
-import hero8 from '@/assets/8.png';
+import hero1 from '@/assets/1.jpg';
+import hero2 from '@/assets/2.jpg';
+import hero3 from '@/assets/3.jpg';
+import hero4 from '@/assets/4.jpg';
+import hero5 from '@/assets/5.jpg';
+import hero6 from '@/assets/6.jpg';
+import hero7 from '@/assets/7.jpg';
+import hero8 from '@/assets/8.jpg';
+import hero9 from '@/assets/9.jpg';
 
-const images = [hero1, hero2, hero3, hero4, hero5, hero6, hero7, hero8];
+const images = [hero1, hero2, hero3, hero4, hero5, hero6, hero7, hero8, hero9];
 
 const HeroSlideshow: React.FC = () => {
   const { language, isRTL } = useLanguage();

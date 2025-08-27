@@ -5,7 +5,7 @@ const Slogan: React.FC = () => {
   const { language, isRTL } = useLanguage();
 
   return (
-    <section className="pt-16 pb-16 bg-surface flex items-center justify-center min-h-[60vh]">
+    <section className="pt-8 pb-8 bg-surface flex items-center justify-center min-h-[40vh]">
       <div className="container mx-auto px-6 max-w-6xl">
         <div className="text-center space-y-8">
           {/* Subtle divider */}
