@@ -115,16 +115,7 @@ const Services: React.FC = () => {
           </div>
         </div>
 
-        {/* Bottom luxury divider */}
-        <div className="text-center">
-          <div className="inline-block">
-            <div className="flex items-center justify-center space-x-4">
-              <div className="w-16 h-px bg-gradient-to-r from-transparent via-white/60 to-transparent"></div>
-              <div className="w-2 h-2 bg-white/80 rounded-full"></div>
-              <div className="w-16 h-px bg-gradient-to-r from-transparent via-white/60 to-transparent"></div>
-            </div>
-          </div>
-        </div>
+
       </div>
     </section>
   );

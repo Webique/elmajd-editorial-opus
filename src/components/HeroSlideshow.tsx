@@ -21,12 +21,13 @@ const HeroSlideshow: React.FC = () => {
   const [imagesLoaded, setImagesLoaded] = useState(false);
   const [loadedImages, setLoadedImages] = useState<Set<string>>(new Set());
 
-  // Progressive image loading - start slideshow as soon as first few images are ready
+  // Fast loading - start slideshow immediately
   useEffect(() => {
     const preloadImages = async () => {
-      // Start slideshow after first 3 images are loaded
-      const requiredImages = images.slice(0, 3);
+      // Start slideshow immediately
+      setImagesLoaded(true);
       
+      // Load all images in background for smooth transitions
       const loadImage = (src: string): Promise<string> => {
         return new Promise((resolve, reject) => {
           const img = new Image();
@@ -39,18 +40,8 @@ const HeroSlideshow: React.FC = () => {
         });
       };
 
-      try {
-        // Load first 3 images quickly
-        await Promise.all(requiredImages.map(loadImage));
-        setImagesLoaded(true);
-        
-        // Continue loading remaining images in background
-        const remainingImages = images.slice(3);
-        remainingImages.forEach(loadImage);
-      } catch (error) {
-        console.error('Error preloading images:', error);
-        setImagesLoaded(true); // Continue anyway
-      }
+      // Load all images in parallel in background
+      images.forEach(loadImage);
     };
 
     preloadImages();
@@ -99,18 +90,7 @@ const HeroSlideshow: React.FC = () => {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [prevSlide, nextSlide]);
 
-  // Show loading state until required images are ready
-  if (!imagesLoaded) {
-    return (
-      <section className="relative w-full h-[70vh] md:h-screen overflow-hidden bg-black flex items-center justify-center">
-        <div className="text-center">
-          <div className="w-16 h-16 border-2 border-white/20 border-t-white rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-white/60 text-sm">Loading...</p>
-          <p className="text-white/40 text-xs mt-2">Loading first 3 images...</p>
-        </div>
-      </section>
-    );
-  }
+  // No loading screen - slideshow starts immediately
 
   return (
     <section className="relative w-full h-[70vh] md:h-screen overflow-hidden bg-black">
