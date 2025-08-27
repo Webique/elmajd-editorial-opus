@@ -17,22 +17,34 @@ const HeroSlideshow: React.FC = () => {
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [direction, setDirection] = useState<'next' | 'prev'>('next');
   const [imagesLoaded, setImagesLoaded] = useState(false);
+  const [loadedImages, setLoadedImages] = useState<Set<string>>(new Set());
 
-  // Preload all images immediately
+  // Progressive image loading - start slideshow as soon as first few images are ready
   useEffect(() => {
     const preloadImages = async () => {
-      const imagePromises = images.map((src) => {
+      // Start slideshow after first 3 images are loaded
+      const requiredImages = images.slice(0, 3);
+      
+      const loadImage = (src: string): Promise<string> => {
         return new Promise((resolve, reject) => {
           const img = new Image();
-          img.onload = () => resolve(src);
+          img.onload = () => {
+            setLoadedImages(prev => new Set(prev).add(src));
+            resolve(src);
+          };
           img.onerror = reject;
           img.src = src;
         });
-      });
+      };
 
       try {
-        await Promise.all(imagePromises);
+        // Load first 3 images quickly
+        await Promise.all(requiredImages.map(loadImage));
         setImagesLoaded(true);
+        
+        // Continue loading remaining images in background
+        const remainingImages = images.slice(3);
+        remainingImages.forEach(loadImage);
       } catch (error) {
         console.error('Error preloading images:', error);
         setImagesLoaded(true); // Continue anyway
@@ -63,7 +75,7 @@ const HeroSlideshow: React.FC = () => {
 
     const interval = setInterval(() => {
       nextSlide();
-    }, 8000); // Slower, more luxurious timing
+    }, 8000);
 
     return () => clearInterval(interval);
   }, [nextSlide, imagesLoaded]);
@@ -85,13 +97,14 @@ const HeroSlideshow: React.FC = () => {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [prevSlide, nextSlide]);
 
-  // Show loading state until images are ready
+  // Show loading state until required images are ready
   if (!imagesLoaded) {
     return (
       <section className="relative w-full h-screen overflow-hidden bg-black flex items-center justify-center">
         <div className="text-center">
           <div className="w-16 h-16 border-2 border-white/20 border-t-white rounded-full animate-spin mx-auto mb-4"></div>
           <p className="text-white/60 text-sm">Loading...</p>
+          <p className="text-white/40 text-xs mt-2">Loading first 3 images...</p>
         </div>
       </section>
     );

@@ -208,3 +208,45 @@ All colors MUST be HSL.
     transform: scale(1.06) translateX(-2%) translateY(-1%);
   }
 }
+
+/* Image loading optimizations - maintaining quality */
+img {
+  image-rendering: auto; /* Let browser choose best rendering */
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* Optimize background images - maintaining quality */
+.bg-cover {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  will-change: transform;
+  image-rendering: auto; /* Maintain original image quality */
+}
+
+/* Loading performance improvements */
+.animate-spin {
+  animation: spin 1s linear infinite;
+  will-change: transform;
+}
+
+/* Optimize luxury effects */
+.animate-float {
+  will-change: transform, opacity;
+}
+
+.animate-fade-in-delayed {
+  will-change: opacity, transform;
+}
+
+/* RTL Support for slide indicators */
+[dir="rtl"] .slide-indicators {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .slide-indicators > * + * {
+  margin-right: 0.75rem;
+  margin-left: 0;
+}

@@ -41,9 +41,13 @@ const Contact: React.FC = () => {
                 </div>
                 <a
                   href={contact.href}
-                  className="block text-white text-lg md:text-xl font-light transition-opacity duration-300 ease-luxury hover:opacity-75"
+                  className={`block text-white text-lg md:text-xl font-light transition-opacity duration-300 ease-luxury hover:opacity-75 ${
+                    contact.labelEn === "Phone" ? "rtl:ltr" : ""
+                  }`}
                   target={contact.href.startsWith('http') ? '_blank' : undefined}
                   rel={contact.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                  dir={contact.labelEn === "Phone" ? "ltr" : undefined}
+                  style={contact.labelEn === "Phone" ? { direction: 'ltr', textAlign: 'center' } : {}}
                 >
                   {contact.value}
                 </a>
