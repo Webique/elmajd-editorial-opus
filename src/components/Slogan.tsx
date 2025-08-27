@@ -5,33 +5,22 @@ const Slogan: React.FC = () => {
   const { language, isRTL } = useLanguage();
 
   return (
-    <section className="py-section bg-surface">
+    <section className="pt-16 pb-16 bg-surface flex items-center justify-center min-h-[60vh]">
       <div className="container mx-auto px-6 max-w-6xl">
         <div className="text-center space-y-8">
           {/* Subtle divider */}
           <div className="w-24 h-px bg-divider/15 mx-auto" />
           
-          <div className={`space-y-6 ${isRTL ? 'text-right' : 'text-left'} md:text-center`}>
+          <div className="space-y-6 text-center">
             {language === 'en' ? (
-              <>
-                <h1 className="font-display text-4xl md:text-6xl text-brand-green leading-tight tracking-wide slide-up">
-                  WE ACHIEVE YOUR VISION<br />
-                  WITH ARCHITECTURAL CREATIVITY
-                </h1>
-                <p className="font-display-ar text-3xl md:text-5xl text-brand-green/80 leading-relaxed slide-up" style={{ animationDelay: '200ms' }}>
-                  نحقق رؤيتك بالإبداع المعماري
-                </p>
-              </>
+              <h1 className="font-display text-4xl md:text-6xl text-white leading-tight tracking-wide slide-up">
+                WE ACHIEVE YOUR VISION<br />
+                WITH ARCHITECTURAL CREATIVITY
+              </h1>
             ) : (
-              <>
-                <h1 className="font-display-ar text-4xl md:text-6xl text-brand-green leading-relaxed slide-up">
-                  نحقق رؤيتك بالإبداع المعماري
-                </h1>
-                <p className="font-display text-3xl md:text-5xl text-brand-green/80 leading-tight tracking-wide slide-up" style={{ animationDelay: '200ms' }}>
-                  WE ACHIEVE YOUR VISION<br />
-                  WITH ARCHITECTURAL CREATIVITY
-                </p>
-              </>
+              <h1 className="font-display-ar text-4xl md:text-6xl text-white leading-relaxed slide-up">
+                نحقق رؤيتك بالإبداع المعماري
+              </h1>
             )}
           </div>
           

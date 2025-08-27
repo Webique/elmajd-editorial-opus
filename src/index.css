@@ -10,42 +10,42 @@ All colors MUST be HSL.
 @layer base {
   :root {
     /* Core Brand Colors */
-    --background: 0 0% 100%;
-    --foreground: 139 35% 14%;
+    --background: 139 35% 14%; /* rgba(22,49,39,255) - deep green */
+    --foreground: 0 0% 100%; /* white text */
     --brand-green: 139 35% 14%; /* rgba(22,49,39,255) */
     --brand-green-muted: 139 35% 14%;
     
     /* Typography Colors */
-    --text-primary: 139 35% 14%;
-    --text-secondary: 0 0% 20%;
-    --text-muted: 0 0% 40%;
+    --text-primary: 0 0% 100%; /* white */
+    --text-secondary: 0 0% 100%; /* white */
+    --text-muted: 0 0% 90%; /* light white */
     
     /* Subtle Dividers */
-    --divider: 139 15% 14%;
-    --divider-light: 139 8% 50%;
+    --divider: 0 0% 100%; /* white */
+    --divider-light: 0 0% 100%; /* white */
     
     /* Background variations */
-    --surface: 0 0% 100%;
-    --surface-soft: 0 0% 99%;
+    --surface: 139 35% 14%; /* deep green */
+    --surface-soft: 139 35% 14%; /* deep green */
 
     /* Standard tokens for components */
-    --card: 0 0% 100%;
-    --card-foreground: 139 35% 14%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 139 35% 14%;
-    --primary: 139 35% 14%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 0 0% 96%;
-    --secondary-foreground: 139 35% 14%;
-    --muted: 0 0% 96%;
-    --muted-foreground: 0 0% 40%;
-    --accent: 0 0% 96%;
-    --accent-foreground: 139 35% 14%;
+    --card: 139 35% 14%; /* deep green */
+    --card-foreground: 0 0% 100%; /* white */
+    --popover: 139 35% 14%; /* deep green */
+    --popover-foreground: 0 0% 100%; /* white */
+    --primary: 139 35% 14%; /* deep green */
+    --primary-foreground: 0 0% 100%; /* white */
+    --secondary: 139 35% 14%; /* deep green */
+    --secondary-foreground: 0 0% 100%; /* white */
+    --muted: 139 35% 14%; /* deep green */
+    --muted-foreground: 0 0% 90%; /* light white */
+    --accent: 139 35% 14%; /* deep green */
+    --accent-foreground: 0 0% 100%; /* white */
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 90%;
-    --input: 0 0% 90%;
-    --ring: 139 35% 14%;
+    --border: 0 0% 100%; /* white */
+    --input: 0 0% 100%; /* white */
+    --ring: 0 0% 100%; /* white */
     --radius: 0.5rem;
     
     /* Custom Animation Easing */
@@ -57,21 +57,21 @@ All colors MUST be HSL.
     --font-body: 'Helvetica Neue', 'Arial', sans-serif;
     --font-body-ar: 'IBM Plex Sans Arabic', sans-serif;
 
-    --sidebar-background: 0 0% 98%;
+    --sidebar-background: 139 35% 14%; /* deep green */
 
-    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-foreground: 0 0% 100%; /* white */
 
-    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary: 139 35% 14%; /* deep green */
 
-    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-primary-foreground: 0 0% 100%; /* white */
 
-    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent: 139 35% 14%; /* deep green */
 
-    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-accent-foreground: 0 0% 100%; /* white */
 
-    --sidebar-border: 220 13% 91%;
+    --sidebar-border: 0 0% 100%; /* white */
 
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-ring: 0 0% 100%; /* white */
   }
 
   /* No dark mode - luxury sites stay consistent */
@@ -85,14 +85,26 @@ All colors MUST be HSL.
   html {
     scroll-behavior: smooth;
     font-feature-settings: "kern" 1, "liga" 1;
+    background-color: black;
+    min-height: 100vh;
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-black text-foreground;
     font-family: var(--font-body);
     font-weight: 300;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    background-color: black;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+  }
+
+  /* Ensure root element is black */
+  #root {
+    background-color: black;
+    min-height: 100vh;
   }
   
   /* Arabic Typography */
@@ -126,6 +138,30 @@ All colors MUST be HSL.
     opacity: 0;
     transform: translateY(30px);
   }
+
+  /* RTL Support for slide indicators */
+  [dir="rtl"] .slide-indicators {
+    flex-direction: row-reverse;
+  }
+
+  [dir="rtl"] .slide-indicators > * + * {
+    margin-right: 0.75rem;
+    margin-left: 0;
+  }
+
+  /* Hero slideshow luxury effects */
+  .animate-fade-in-delayed {
+    animation: fadeInDelayed 2s var(--ease-luxury) 1s forwards;
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  /* Radial gradient utility */
+  .bg-radial-gradient {
+    background: radial-gradient(circle at center, transparent 0%, transparent 50%, rgba(0,0,0,0.3) 100%);
+  }
 }
 
 @keyframes fadeIn {
@@ -138,6 +174,28 @@ All colors MUST be HSL.
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDelayed {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translateY(-20px) rotate(180deg);
+    opacity: 0.8;
   }
 }
 

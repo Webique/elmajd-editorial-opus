@@ -26,22 +26,22 @@ const Contact: React.FC = () => {
   ];
 
   return (
-    <footer className="py-section bg-surface">
+    <footer className="py-section bg-black">
       <div className="container mx-auto px-6 max-w-4xl">
         {/* Subtle divider */}
-        <div className="w-full h-px bg-divider/12 mb-16" />
+        <div className="w-full h-px bg-white/20 mb-16" />
         
-        <div className={`space-y-12 ${isRTL ? 'text-right' : 'text-left'} md:text-center`}>
+        <div className="space-y-12 text-center">
           <div className="grid gap-8 md:grid-cols-3">
             {contactInfo.map((contact, index) => (
               <div key={index} className="space-y-2 slide-up" style={{ animationDelay: `${index * 100}ms` }}>
                 {/* Micro label - kept minimal for mystery */}
-                <div className="text-text-muted text-xs font-light uppercase tracking-wider opacity-50">
+                <div className="text-white/70 text-xs font-light uppercase tracking-wider opacity-50">
                   {language === 'ar' ? contact.labelAr : contact.labelEn}
                 </div>
                 <a
                   href={contact.href}
-                  className="block text-brand-green text-lg md:text-xl font-light transition-opacity duration-300 ease-luxury hover:opacity-75"
+                  className="block text-white text-lg md:text-xl font-light transition-opacity duration-300 ease-luxury hover:opacity-75"
                   target={contact.href.startsWith('http') ? '_blank' : undefined}
                   rel={contact.href.startsWith('http') ? 'noopener noreferrer' : undefined}
                 >
@@ -53,7 +53,7 @@ const Contact: React.FC = () => {
           
           {/* Company name - understated */}
           <div className="text-center pt-8">
-            <div className="text-text-muted text-sm font-light tracking-wide opacity-60 slide-up" style={{ animationDelay: '400ms' }}>
+            <div className="text-white/70 text-sm font-light tracking-wide opacity-60 slide-up" style={{ animationDelay: '400ms' }}>
               ELMAJD GROUP
             </div>
           </div>

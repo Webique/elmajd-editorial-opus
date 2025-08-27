@@ -11,19 +11,19 @@ const LanguageToggle: React.FC = () => {
           onClick={() => setLanguage('en')}
           className={`px-2 py-1 transition-all duration-300 ease-luxury ${
             language === 'en' 
-              ? 'text-brand-green opacity-100' 
-              : 'text-text-muted opacity-50 hover:opacity-75'
+              ? 'text-white opacity-100' 
+              : 'text-white/50 opacity-50 hover:opacity-75'
           }`}
         >
           EN
         </button>
-        <span className="text-divider-light opacity-30">/</span>
+        <span className="text-white/30 opacity-30">/</span>
         <button
           onClick={() => setLanguage('ar')}
           className={`px-2 py-1 transition-all duration-300 ease-luxury ${
             language === 'ar' 
-              ? 'text-brand-green opacity-100' 
-              : 'text-text-muted opacity-50 hover:opacity-75'
+              ? 'text-white opacity-100' 
+              : 'text-white/50 opacity-50 hover:opacity-75'
           }`}
         >
           AR
