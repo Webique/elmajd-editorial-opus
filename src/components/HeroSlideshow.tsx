@@ -64,9 +64,9 @@ const HeroSlideshow: React.FC = () => {
     <section className="relative w-full h-[70vh] md:h-screen overflow-hidden bg-black">
       {/* Main slideshow */}
       <div className="relative w-full h-full">
-        {images.map((image, index) => (
-          <div
-            key={index}
+      {images.map((image, index) => (
+        <div
+          key={index}
             className={`absolute inset-0 transition-all duration-1000 ease-out ${
               index === currentIndex 
                 ? 'opacity-100 scale-100 translate-x-0' 
@@ -143,25 +143,24 @@ const HeroSlideshow: React.FC = () => {
         />
       </div>
 
-      {/* Services text and line at bottom */}
-      <div className="absolute left-1/2 -bottom-24 transform -translate-x-1/2 z-20 text-center">
-        <h2 className="text-2xl md:text-4xl font-bold text-white mb-6 hero-text-transition drop-shadow-lg" style={{ animationDelay: '400ms' }}>
+      {/* Services text - separate div */}
+      <div className="absolute left-1/2 bottom-16 md:bottom-20 transform -translate-x-1/2 z-20 text-center">
+        <h2 className="text-2xl md:text-4xl font-bold text-white drop-shadow-lg" style={{ animationDelay: '400ms' }}>
           {language === 'ar' ? 'خدماتنا' : 'Our Services'}
         </h2>
-        
-        {/* Enhanced glowing line with flowing light effect */}
-        <div className="relative mx-auto hero-text-transition" style={{ animationDelay: '600ms' }}>
-          {/* Single glowing line with flowing light effect */}
-          <div className="w-px h-32 mx-auto relative overflow-hidden">
-            {/* Base line with subtle glow */}
-            <div className="absolute inset-0 bg-gradient-to-b from-white/60 via-white/40 to-transparent"></div>
-            
-            {/* Flowing light effect that moves down */}
-            <div className="absolute inset-0 bg-gradient-to-b from-white/80 via-white/60 to-white/20 animate-flowing-light"></div>
-            
-            {/* Subtle outer glow */}
-            <div className="absolute inset-0 w-2 h-full -left-0.5 bg-gradient-to-b from-white/10 via-white/20 to-white/5 blur-sm animate-pulse"></div>
-          </div>
+      </div>
+      
+      {/* Glowing line - separate div below text */}
+      <div className="absolute left-1/2 bottom-8 transform -translate-x-1/2 z-20 text-center">
+        <div className="w-px h-3 mx-auto relative">
+          {/* Base line */}
+          <div className="absolute inset-0 bg-gradient-to-b from-white/30 to-transparent"></div>
+          
+          {/* Flowing light effect - starts from top, flows down */}
+          <div className="absolute inset-0 bg-gradient-to-b from-white/90 via-white/60 to-white/20 animate-flowing-light"></div>
+          
+          {/* Subtle glow */}
+          <div className="absolute inset-0 w-3 h-full -left-1 bg-gradient-to-b from-white/20 via-white/10 to-transparent blur-sm"></div>
         </div>
       </div>
 
@@ -195,7 +194,7 @@ const HeroSlideshow: React.FC = () => {
             }}
           />
         ))}
-      </div>
+        </div>
     </section>
   );
 };

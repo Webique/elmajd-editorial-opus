@@ -33,20 +33,10 @@ const Services: React.FC = () => {
   return (
     <section ref={sectionRef} className="pt-8 pb-16 bg-surface-soft">
       <div className="container mx-auto px-6 max-w-4xl">
-        {/* Luxury Services Title */}
+        {/* Services Section */}
         <div className="text-center mb-16">
           <div className="inline-block">
-            {/* Main title */}
-            <h2 className="font-display text-4xl md:text-6xl text-white font-light tracking-widest mb-8">
-              {language === 'ar' ? 'الخدمات' : 'SERVICES'}
-            </h2>
-            
-            {/* Bottom luxury divider */}
-            <div className="flex items-center justify-center">
-              <div className="w-16 h-px bg-gradient-to-r from-transparent via-white/60 to-transparent"></div>
-              <div className={`w-2 h-2 bg-white/80 rounded-full mx-4`}></div>
-              <div className="w-16 h-px bg-gradient-to-r from-transparent via-white/60 to-transparent"></div>
-            </div>
+            {/* Removed Services title */}
           </div>
         </div>
 
@@ -75,11 +65,9 @@ const Services: React.FC = () => {
         {/* Consultation Booking Section */}
         <div className="text-center mt-20 mb-16">
           <div className="inline-block">
-            {/* Top luxury divider */}
+            {/* Top luxury divider - horizontal line */}
             <div className="flex items-center justify-center mb-8">
-              <div className="w-16 h-px bg-gradient-to-r from-transparent via-white/60 to-transparent"></div>
-              <div className={`w-2 h-2 bg-white/80 rounded-full mx-4`}></div>
-              <div className="w-16 h-px bg-gradient-to-r from-transparent via-white/60 to-transparent"></div>
+              <div className="w-32 h-px bg-gradient-to-r from-transparent via-white/60 to-transparent"></div>
             </div>
             
             {/* Consultation title */}
@@ -99,11 +87,9 @@ const Services: React.FC = () => {
               </span>
             </a>
             
-            {/* Bottom luxury divider */}
+            {/* Bottom luxury divider - horizontal line */}
             <div className="flex items-center justify-center mt-8">
-              <div className="w-16 h-px bg-gradient-to-r from-transparent via-white/60 to-transparent"></div>
-              <div className={`w-2 h-2 bg-white/80 rounded-full mx-4`}></div>
-              <div className="w-16 h-px bg-gradient-to-r from-transparent via-white/60 to-transparent"></div>
+              <div className="w-32 h-px bg-gradient-to-r from-transparent via-white/60 to-transparent"></div>
             </div>
           </div>
         </div>
