@@ -279,19 +279,19 @@ img {
 
 /* Custom flowing light animation for hero line */
 .animate-flowing-light {
-  animation: flowingLight 3s ease-in-out infinite;
+  animation: flowingLight 4s ease-in-out infinite;
   will-change: transform;
 }
 
 @keyframes flowingLight {
   0% {
-    transform: translateY(-100%);
+    transform: translateY(0%);
     opacity: 0;
   }
-  20% {
+  15% {
     opacity: 1;
   }
-  80% {
+  85% {
     opacity: 1;
   }
   100% {

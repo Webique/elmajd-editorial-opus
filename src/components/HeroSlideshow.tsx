@@ -234,22 +234,18 @@ const HeroSlideshow: React.FC = () => {
         
         {/* Enhanced glowing line with flowing light effect */}
         <div className="relative mx-auto hero-text-transition" style={{ animationDelay: '600ms' }}>
-          {/* Main line */}
-          <div className="w-px h-32 bg-gradient-to-b from-white/80 via-white/60 to-transparent mx-auto"></div>
+          {/* Main line - thinner and more subtle */}
+          <div className="w-px h-32 bg-gradient-to-b from-white/60 via-white/40 to-transparent mx-auto"></div>
           
-          {/* Bright flowing light effect */}
-          <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-2 h-32 overflow-hidden">
-            <div className="w-full h-full bg-gradient-to-b from-white/0 via-white/90 to-white/0 animate-flowing-light"></div>
+          {/* Bright flowing light effect - starts from complete top */}
+          <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-px h-32 overflow-hidden">
+            <div className="w-full h-full bg-gradient-to-b from-white/80 via-white/60 to-white/20 animate-flowing-light"></div>
           </div>
           
-          {/* Glowing aura around the line */}
-          <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-4 h-32">
-            <div className="w-full h-full bg-gradient-to-b from-white/20 via-white/40 to-white/10 blur-sm animate-pulse"></div>
+          {/* Subtle glowing aura around the line */}
+          <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-2 h-32">
+            <div className="w-full h-full bg-gradient-to-b from-white/10 via-white/20 to-white/5 blur-sm animate-pulse"></div>
           </div>
-          
-          {/* Pulsing dots at top and bottom */}
-          <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-white/80 rounded-full animate-ping"></div>
-          <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-white/60 rounded-full animate-pulse"></div>
         </div>
       </div>
 
