@@ -213,12 +213,43 @@
   }
 }
 
+/* Loading spinner optimizations */
+.animate-spin {
+  animation: spin 1s linear infinite;
+  will-change: transform;
+  /* Force GPU acceleration */
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+}
+
+/* IMAGE OPTIMIZATION - ULTRA FAST LOADING */
+/* Progressive image loading */
+.image-loaded {
+  animation: imageFadeIn 0.5s ease-out forwards;
+}
+
+@keyframes imageFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(1.05);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
 /* Image loading optimizations - maintaining quality */
 img {
   image-rendering: auto; /* Let browser choose best rendering */
   backface-visibility: hidden;
   transform: translateZ(0);
   will-change: transform;
+  /* Force hardware acceleration */
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  -o-transform: translateZ(0);
 }
 
 /* Optimize background images - maintaining quality */
@@ -228,12 +259,45 @@ img {
   background-repeat: no-repeat;
   will-change: transform;
   image-rendering: auto; /* Maintain original image quality */
+  /* Force hardware acceleration */
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  -o-transform: translateZ(0);
 }
 
-/* Loading performance improvements */
-.animate-spin {
-  animation: spin 1s linear infinite;
+/* Hero slideshow specific optimizations */
+.hero-slideshow img {
+  /* Prevent layout shift */
+  aspect-ratio: 16/9;
+  /* Optimize for slideshow */
+  will-change: opacity, transform;
+  /* Force GPU acceleration */
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+}
+
+/* Custom flowing light animation for hero line */
+.animate-flowing-light {
+  animation: flowingLight 3s ease-in-out infinite;
   will-change: transform;
+}
+
+@keyframes flowingLight {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
 }
 
 /* Optimize luxury effects */

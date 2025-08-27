@@ -1,15 +1,15 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import logo from '@/assets/logo1.png';
-import hero1 from '@/assets/1.jpg';
-import hero2 from '@/assets/2.jpg';
-import hero3 from '@/assets/3.jpg';
-import hero4 from '@/assets/4.jpg';
-import hero5 from '@/assets/5.jpg';
-import hero6 from '@/assets/6.jpg';
-import hero7 from '@/assets/7.jpg';
-import hero8 from '@/assets/8.jpg';
-import hero9 from '@/assets/9.jpg';
+import hero1 from '@/assets/1.webp';
+import hero2 from '@/assets/2.webp';
+import hero3 from '@/assets/3.webp';
+import hero4 from '@/assets/4.webp';
+import hero5 from '@/assets/5.webp';
+import hero6 from '@/assets/6.webp';
+import hero7 from '@/assets/7.webp';
+import hero8 from '@/assets/8.webp';
+import hero9 from '@/assets/9.webp';
 
 const images = [hero1, hero2, hero3, hero4, hero5, hero6, hero7, hero8, hero9];
 
@@ -20,28 +20,71 @@ const HeroSlideshow: React.FC = () => {
   const [direction, setDirection] = useState<'next' | 'prev'>('next');
   const [imagesLoaded, setImagesLoaded] = useState(false);
   const [loadedImages, setLoadedImages] = useState<Set<string>>(new Set());
+  const [imageQualities, setImageQualities] = useState<Map<string, string>>(new Map());
+  const imageRefs = useRef<(HTMLDivElement | null)[]>([]);
 
-  // Fast loading - start slideshow immediately
+  // Ultra-fast loading with progressive enhancement
   useEffect(() => {
     const preloadImages = async () => {
-      // Start slideshow immediately
+      // Start slideshow immediately with first image
       setImagesLoaded(true);
       
-      // Load all images in background for smooth transitions
-      const loadImage = (src: string): Promise<string> => {
+      // Progressive loading strategy with WebP fallback
+      const loadImage = (src: string, index: number): Promise<string> => {
         return new Promise((resolve, reject) => {
           const img = new Image();
+          
+          // Start with low quality for immediate display
           img.onload = () => {
             setLoadedImages(prev => new Set(prev).add(src));
+            
+            // Mark as loaded in the DOM
+            if (imageRefs.current[index]) {
+              imageRefs.current[index]?.classList.add('image-loaded');
+            }
+            
             resolve(src);
           };
-          img.onerror = reject;
-          img.src = src;
+          
+          img.onerror = () => {
+            // WebP fallback to JPG if needed
+            const fallbackSrc = src.replace('.webp', '.jpg');
+            if (fallbackSrc !== src) {
+              img.src = fallbackSrc;
+            } else {
+              reject(new Error('Image failed to load'));
+            }
+          };
+          
+          // Use fetch for better control and caching
+          fetch(src, { 
+            cache: 'force-cache',
+            priority: index === 0 ? 'high' : 'low'
+          })
+            .then(response => {
+              if (response.ok) {
+                return response.blob();
+              }
+              throw new Error('Image fetch failed');
+            })
+            .then(blob => {
+              const objectURL = URL.createObjectURL(blob);
+              img.src = objectURL;
+            })
+            .catch(() => {
+              // Fallback to direct loading
+              img.src = src;
+            });
         });
       };
 
-      // Load all images in parallel in background
-      images.forEach(loadImage);
+      // Load first image immediately, others in parallel
+      await loadImage(images[0], 0);
+      
+      // Load remaining images in background with priority
+      Promise.allSettled(
+        images.slice(1).map((img, idx) => loadImage(img, idx + 1))
+      );
     };
 
     preloadImages();
@@ -90,8 +133,6 @@ const HeroSlideshow: React.FC = () => {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [prevSlide, nextSlide]);
 
-  // No loading screen - slideshow starts immediately
-
   return (
     <section className="relative w-full h-[70vh] md:h-screen overflow-hidden bg-black">
       {/* Main slideshow */}
@@ -99,6 +140,7 @@ const HeroSlideshow: React.FC = () => {
         {images.map((image, index) => (
           <div
             key={index}
+            ref={el => imageRefs.current[index] = el}
             className={`absolute inset-0 transition-all duration-1000 ease-out ${
               index === currentIndex 
                 ? 'opacity-100 scale-100 translate-x-0' 
@@ -109,13 +151,22 @@ const HeroSlideshow: React.FC = () => {
                 : 'opacity-0 scale-90 translate-x-0'
             }`}
           >
-            {/* Background image with luxury effects */}
+            {/* Background image with luxury effects and progressive loading */}
             <div
-              className="w-full h-full bg-cover bg-center relative"
+              className="w-full h-full bg-cover bg-center relative overflow-hidden"
               style={{
                 backgroundImage: `url(${image})`,
               }}
             >
+              {/* Progressive loading overlay */}
+              <div className={`absolute inset-0 bg-black transition-opacity duration-500 ${
+                loadedImages.has(image) ? 'opacity-0' : 'opacity-100'
+              }`}>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-8 h-8 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                </div>
+              </div>
+              
               {/* Luxury overlay gradient */}
               <div className="absolute inset-0 bg-gradient-to-br from-black/20 via-transparent to-black/40" />
               
@@ -168,7 +219,7 @@ const HeroSlideshow: React.FC = () => {
         <img 
           src={logo} 
           alt="ELMAJD GROUP" 
-          className="h-96 md:h-64 w-auto object-contain fade-in drop-shadow-lg"
+          className="h-[28rem] md:h-56 w-auto object-contain fade-in drop-shadow-lg"
           style={{ 
             animationDelay: '200ms'
           }}
@@ -180,7 +231,26 @@ const HeroSlideshow: React.FC = () => {
         <h2 className="text-2xl md:text-4xl font-bold text-white mb-6 hero-text-transition drop-shadow-lg" style={{ animationDelay: '400ms' }}>
           {language === 'ar' ? 'خدماتنا' : 'Our Services'}
         </h2>
-        <div className="w-px h-32 bg-gradient-to-b from-white/80 via-white/60 to-transparent mx-auto hero-text-transition" style={{ animationDelay: '600ms' }}></div>
+        
+        {/* Enhanced glowing line with flowing light effect */}
+        <div className="relative mx-auto hero-text-transition" style={{ animationDelay: '600ms' }}>
+          {/* Main line */}
+          <div className="w-px h-32 bg-gradient-to-b from-white/80 via-white/60 to-transparent mx-auto"></div>
+          
+          {/* Bright flowing light effect */}
+          <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-2 h-32 overflow-hidden">
+            <div className="w-full h-full bg-gradient-to-b from-white/0 via-white/90 to-white/0 animate-flowing-light"></div>
+          </div>
+          
+          {/* Glowing aura around the line */}
+          <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-4 h-32">
+            <div className="w-full h-full bg-gradient-to-b from-white/20 via-white/40 to-white/10 blur-sm animate-pulse"></div>
+          </div>
+          
+          {/* Pulsing dots at top and bottom */}
+          <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-white/80 rounded-full animate-ping"></div>
+          <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-white/60 rounded-full animate-pulse"></div>
+        </div>
       </div>
 
       {/* Progress bar */}
