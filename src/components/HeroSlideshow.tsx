@@ -16,30 +16,57 @@ const HeroSlideshow: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [direction, setDirection] = useState<'next' | 'prev'>('next');
+  const [imagesLoaded, setImagesLoaded] = useState(false);
+
+  // Preload all images immediately
+  useEffect(() => {
+    const preloadImages = async () => {
+      const imagePromises = images.map((src) => {
+        return new Promise((resolve, reject) => {
+          const img = new Image();
+          img.onload = () => resolve(src);
+          img.onerror = reject;
+          img.src = src;
+        });
+      });
+
+      try {
+        await Promise.all(imagePromises);
+        setImagesLoaded(true);
+      } catch (error) {
+        console.error('Error preloading images:', error);
+        setImagesLoaded(true); // Continue anyway
+      }
+    };
+
+    preloadImages();
+  }, []);
 
   const nextSlide = useCallback(() => {
-    if (!isTransitioning) {
+    if (!isTransitioning && imagesLoaded) {
       setIsTransitioning(true);
       setDirection('next');
       setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
     }
-  }, [isTransitioning]);
+  }, [isTransitioning, imagesLoaded]);
 
   const prevSlide = useCallback(() => {
-    if (!isTransitioning) {
+    if (!isTransitioning && imagesLoaded) {
       setIsTransitioning(true);
       setDirection('prev');
       setCurrentIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
     }
-  }, [isTransitioning]);
+  }, [isTransitioning, imagesLoaded]);
 
   useEffect(() => {
+    if (!imagesLoaded) return;
+
     const interval = setInterval(() => {
       nextSlide();
     }, 8000); // Slower, more luxurious timing
 
     return () => clearInterval(interval);
-  }, [nextSlide]);
+  }, [nextSlide, imagesLoaded]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -57,6 +84,18 @@ const HeroSlideshow: React.FC = () => {
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [prevSlide, nextSlide]);
+
+  // Show loading state until images are ready
+  if (!imagesLoaded) {
+    return (
+      <section className="relative w-full h-screen overflow-hidden bg-black flex items-center justify-center">
+        <div className="text-center">
+          <div className="w-16 h-16 border-2 border-white/20 border-t-white rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-white/60 text-sm">Loading...</p>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="relative w-full h-screen overflow-hidden bg-black">
