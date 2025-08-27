@@ -164,12 +164,18 @@ const HeroSlideshow: React.FC = () => {
       </div>
 
       {/* Logo positioned at top center */}
-      <div className="absolute top-4 left-1/2 transform -translate-x-1/2 z-30">
+      <div className="absolute top-0 md:-top-16 left-1/2 transform -translate-x-1/2 z-30 hero-logo">
         <img 
           src={logo} 
           alt="ELMAJD GROUP" 
-          className="h-40 md:h-48 w-auto object-contain fade-in drop-shadow-lg"
-          style={{ animationDelay: '200ms' }}
+          className="h-[28rem] md:h-56 w-auto object-contain fade-in drop-shadow-lg"
+          style={{ 
+            animationDelay: '200ms',
+            height: '800px',
+            maxHeight: '800px',
+            minHeight: '800px',
+            transform: 'scale(1.5)'
+          }}
         />
       </div>
 

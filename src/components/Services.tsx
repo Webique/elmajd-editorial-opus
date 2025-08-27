@@ -61,7 +61,7 @@ const Services: React.FC = () => {
                   {language === 'ar' ? service.titleAr : service.titleEn}
                 </h3>
                 <div className="space-y-2">
-                  <p className={`text-white leading-relaxed text-base md:text-lg ${
+                  <p className={`text-white leading-relaxed text-xs md:text-sm ${
                     isRTL ? 'font-body-ar' : 'font-body'
                   }`}>
                     {language === 'ar' ? service.descriptionAr : service.descriptionEn}

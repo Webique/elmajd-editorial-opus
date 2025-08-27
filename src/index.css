@@ -376,6 +376,75 @@ body h1, body h2, body h3, body h4, body h5, body h6,
   font-family: var(--font-display) !important;
 }
 
+/* Mobile-specific logo sizing - HIGH PRIORITY */
+@media (max-width: 768px) {
+  .hero-logo img {
+    height: 600px !important;
+    width: auto !important;
+    max-height: 600px !important;
+    min-height: 600px !important;
+  }
+}
+
+/* ULTRA AGGRESSIVE MOBILE LOGO SIZING */
+@media (max-width: 768px) {
+  .hero-logo img,
+  .hero-logo img[src*="logo"],
+  img[alt="ELMAJD GROUP"] {
+    height: 800px !important;
+    width: auto !important;
+    max-height: 800px !important;
+    min-height: 800px !important;
+    transform: scale(2) !important;
+    zoom: 2 !important;
+  }
+}
+
+/* Force mobile logo size with viewport units */
+@media (max-width: 768px) {
+  .hero-logo img {
+    height: 80vh !important;
+    width: auto !important;
+    max-height: 80vh !important;
+    min-height: 80vh !important;
+  }
+}
+
+/* Mobile logo positioning - center and top */
+@media (max-width: 768px) {
+  .hero-logo {
+    top: 12% !important;
+    transform: translate(-50%, -50%) !important;
+    left: 50% !important;
+    position: absolute !important;
+  }
+  
+  .hero-logo img {
+    height: 70vh !important;
+    width: auto !important;
+    max-height: 70vh !important;
+    min-height: 70vh !important;
+  }
+}
+
+/* Laptop/Desktop logo - much smaller and at top */
+@media (min-width: 769px) {
+  .hero-logo {
+    top: 0 !important;
+    transform: translateX(-50%) !important;
+    left: 50% !important;
+    position: absolute !important;
+  }
+  
+  .hero-logo img {
+    height: 220px !important;
+    width: auto !important;
+    max-height: 220px !important;
+    min-height: 220px !important;
+    transform: none !important;
+  }
+}
+
 /* ULTRA HIGH SPECIFICITY ARABIC FONT APPLICATION */
 html[dir="rtl"] *, body[dir="rtl"] *, #root[dir="rtl"] *,
 html [dir="rtl"] *, body [dir="rtl"] *, #root [dir="rtl"] * {
