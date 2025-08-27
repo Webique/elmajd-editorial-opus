@@ -9,7 +9,7 @@ const Contact: React.FC = () => {
       labelEn: "Phone",
       labelAr: "الهاتف",
       value: "+966 53 352 6423",
-      href: "tel:+966533526423"
+      href: "https://wa.me/966533526423"
     },
     {
       labelEn: "Instagram",
