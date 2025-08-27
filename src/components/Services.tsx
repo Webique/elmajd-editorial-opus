@@ -31,20 +31,13 @@ const Services: React.FC = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="pt-8 pb-16 bg-surface-soft section-connector">
+    <section ref={sectionRef} className="pt-8 pb-16 bg-surface-soft">
       <div className="container mx-auto px-6 max-w-4xl">
         {/* Luxury Services Title */}
         <div className="text-center mb-16">
           <div className="inline-block">
-            {/* Top luxury divider */}
-            <div className="flex items-center justify-center space-x-4 mb-6">
-              <div className="w-16 h-px bg-gradient-to-r from-transparent via-white/60 to-transparent"></div>
-              <div className="w-2 h-2 bg-white/80 rounded-full"></div>
-              <div className="w-16 h-px bg-gradient-to-r from-transparent via-white/60 to-transparent"></div>
-            </div>
-            
             {/* Main title */}
-            <h2 className="font-display text-4xl md:text-6xl text-white font-light tracking-widest mb-6">
+            <h2 className="font-display text-4xl md:text-6xl text-white font-light tracking-widest mb-8">
               {language === 'ar' ? 'الخدمات' : 'SERVICES'}
             </h2>
             

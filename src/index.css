@@ -101,7 +101,7 @@ All colors MUST be HSL.
   body {
     @apply bg-black text-foreground;
     font-family: var(--font-body);
-    font-weight: 400;
+    font-weight: 500;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background-color: black;
@@ -123,6 +123,7 @@ All colors MUST be HSL.
   /* Apply display fonts to headings */
   h1, h2, h3 {
     font-family: var(--font-display);
+    font-weight: 600;
   }
 
   /* Ensure root element is black */
@@ -144,6 +145,7 @@ All colors MUST be HSL.
   /* Ensure specific elements use correct fonts */
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
+    font-weight: 600;
   }
 
   p, span, div, a, button, input, textarea, label, li, td, th {
@@ -162,14 +164,14 @@ All colors MUST be HSL.
   /* Display Typography */
   .font-display {
     font-family: var(--font-display);
-    font-weight: 500;
+    font-weight: 600;
     letter-spacing: 0.01em;
     line-height: 1.4;
   }
   
   .font-display-ar {
     font-family: var(--font-display-ar);
-    font-weight: 500;
+    font-weight: 600;
     letter-spacing: 0.01em;
     line-height: 1.4;
   }
@@ -374,7 +376,36 @@ body h1, body h2, body h3, body h4, body h5, body h6,
   font-family: var(--font-display) !important;
 }
 
-/* Ensure Arabic fonts are applied when language is Arabic */
+/* ULTRA HIGH SPECIFICITY ARABIC FONT APPLICATION */
+html[dir="rtl"] *, body[dir="rtl"] *, #root[dir="rtl"] *,
+html [dir="rtl"] *, body [dir="rtl"] *, #root [dir="rtl"] * {
+  font-family: var(--font-body-ar) !important;
+}
+
+html[dir="rtl"] h1, html[dir="rtl"] h2, html[dir="rtl"] h3, html[dir="rtl"] h4, html[dir="rtl"] h5, html[dir="rtl"] h6,
+body[dir="rtl"] h1, body[dir="rtl"] h2, body[dir="rtl"] h3, body[dir="rtl"] h4, body[dir="rtl"] h5, body[dir="rtl"] h6,
+#root[dir="rtl"] h1, #root[dir="rtl"] h2, #root[dir="rtl"] h3, #root[dir="rtl"] h4, #root[dir="rtl"] h5, #root[dir="rtl"] h6,
+html [dir="rtl"] h1, html [dir="rtl"] h2, html [dir="rtl"] h3, html [dir="rtl"] h4, html [dir="rtl"] h5, html [dir="rtl"] h6,
+body [dir="rtl"] h1, body [dir="rtl"] h2, body [dir="rtl"] h3, body [dir="rtl"] h4, body [dir="rtl"] h5, body [dir="rtl"] h6,
+#root [dir="rtl"] h1, #root [dir="rtl"] h2, #root [dir="rtl"] h3, #root [dir="rtl"] h4, #root [dir="rtl"] h5, #root [dir="rtl"] h6 {
+  font-family: var(--font-display-ar) !important;
+}
+
+/* Additional Arabic font enforcement */
+[dir="rtl"] .font-display, [dir="rtl"] .font-body {
+  font-family: var(--font-body-ar) !important;
+}
+
+[dir="rtl"] .font-display-ar, [dir="rtl"] h1, [dir="rtl"] h2, [dir="rtl"] h3, [dir="rtl"] h4, [dir="rtl"] h5, [dir="rtl"] h6 {
+  font-family: var(--font-display-ar) !important;
+}
+
+/* Force Arabic fonts on all elements when RTL */
+[dir="rtl"] p, [dir="rtl"] span, [dir="rtl"] div, [dir="rtl"] a, [dir="rtl"] button, [dir="rtl"] input, [dir="rtl"] textarea, [dir="rtl"] label, [dir="rtl"] li, [dir="rtl"] td, [dir="rtl"] th {
+  font-family: var(--font-body-ar) !important;
+}
+
+/* Ensure Arabic fonts override any other font classes */
 [dir="rtl"] * {
   font-family: var(--font-body-ar) !important;
 }

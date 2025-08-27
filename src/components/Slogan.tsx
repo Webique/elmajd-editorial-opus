@@ -19,7 +19,7 @@ const Slogan: React.FC = () => {
               </h1>
             ) : (
               <h1 className="font-display-ar text-4xl md:text-6xl text-white leading-relaxed slide-up">
-                نحقق رؤيتك بالإبداع المعماري
+                نحقق رؤيتك بإبداع معماري
               </h1>
             )}
           </div>

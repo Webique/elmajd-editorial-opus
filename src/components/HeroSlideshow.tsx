@@ -164,17 +164,17 @@ const HeroSlideshow: React.FC = () => {
       </div>
 
       {/* Logo positioned at top center */}
-      <div className="absolute top-8 left-1/2 transform -translate-x-1/2 z-30">
+      <div className="absolute top-4 left-1/2 transform -translate-x-1/2 z-30">
         <img 
           src={logo} 
           alt="ELMAJD GROUP" 
-          className="h-40 md:h-48 w-auto fade-in drop-shadow-lg"
+          className="h-40 md:h-48 w-auto object-contain fade-in drop-shadow-lg"
           style={{ animationDelay: '200ms' }}
         />
       </div>
 
       {/* Services text and line at bottom */}
-      <div className="absolute left-1/2 bottom-6 transform -translate-x-1/2 z-20 text-center">
+      <div className="absolute left-1/2 -bottom-24 transform -translate-x-1/2 z-20 text-center">
         <h2 className="text-2xl md:text-4xl font-bold text-white mb-6 hero-text-transition drop-shadow-lg" style={{ animationDelay: '400ms' }}>
           {language === 'ar' ? 'خدماتنا' : 'Our Services'}
         </h2>
