@@ -100,7 +100,7 @@ const HeroSlideshow: React.FC = () => {
   // Show loading state until required images are ready
   if (!imagesLoaded) {
     return (
-      <section className="relative w-full h-screen overflow-hidden bg-black flex items-center justify-center">
+      <section className="relative w-full h-[70vh] md:h-screen overflow-hidden bg-black flex items-center justify-center">
         <div className="text-center">
           <div className="w-16 h-16 border-2 border-white/20 border-t-white rounded-full animate-spin mx-auto mb-4"></div>
           <p className="text-white/60 text-sm">Loading...</p>
@@ -111,7 +111,7 @@ const HeroSlideshow: React.FC = () => {
   }
 
   return (
-    <section className="relative w-full h-screen overflow-hidden bg-black">
+    <section className="relative w-full h-[70vh] md:h-screen overflow-hidden bg-black">
       {/* Main slideshow */}
       <div className="relative w-full h-full">
         {images.map((image, index) => (
@@ -155,28 +155,28 @@ const HeroSlideshow: React.FC = () => {
         <button
           onClick={prevSlide}
           disabled={isTransitioning}
-          className={`absolute w-12 h-12 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full flex items-center justify-center text-white/80 hover:bg-white/20 hover:scale-110 transition-all duration-300 ease-out group disabled:opacity-50 disabled:cursor-not-allowed ${
-            isRTL ? 'right-8' : 'left-8'
+          className={`absolute w-16 h-16 flex items-center justify-center text-white/40 hover:text-white/80 transition-all duration-500 ease-out group disabled:opacity-30 disabled:cursor-not-allowed ${
+            isRTL ? 'right-12' : 'left-12'
           }`}
         >
-          <svg className={`w-5 h-5 transform transition-transform duration-300 ${
-            isRTL ? 'rotate-180 group-hover:translate-x-0.5' : 'group-hover:-translate-x-0.5'
-          }`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+          <svg className={`w-8 h-8 transform transition-all duration-500 ease-out ${
+            isRTL ? 'rotate-180 group-hover:scale-110' : 'group-hover:scale-110'
+          }`} fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
           </svg>
         </button>
         
         <button
           onClick={nextSlide}
           disabled={isTransitioning}
-          className={`absolute w-12 h-12 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full flex items-center justify-center text-white/80 hover:bg-white/20 hover:scale-110 transition-all duration-300 ease-out group disabled:opacity-50 disabled:cursor-not-allowed ${
-            isRTL ? 'left-8' : 'right-8'
+          className={`absolute w-16 h-16 flex items-center justify-center text-white/40 hover:text-white/80 transition-all duration-500 ease-out group disabled:opacity-30 disabled:cursor-not-allowed ${
+            isRTL ? 'left-12' : 'right-12'
           }`}
         >
-          <svg className={`w-5 h-5 transform transition-transform duration-300 ${
-            isRTL ? 'rotate-180 group-hover:-translate-x-0.5' : 'group-hover:translate-x-0.5'
-          }`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+          <svg className={`w-8 h-8 transform transition-all duration-500 ease-out ${
+            isRTL ? 'rotate-180 group-hover:scale-110' : 'group-hover:scale-110'
+          }`} fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
           </svg>
         </button>
       </div>
