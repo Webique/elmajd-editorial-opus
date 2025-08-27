@@ -89,7 +89,7 @@ const Services: React.FC = () => {
             
             {/* Consultation button */}
             <a
-              href="https://docs.google.com/forms/d/e/1FAIpQLSeEiVmtCp6q-wCDpwIB9viTA6ALk3Zwab2SdFtHPdgE90iBIA/viewform?usp=preview"
+              href="https://wa.me/966533526423"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block px-8 py-4 border border-white/30 bg-white/5 hover:bg-white/10 transition-all duration-300 ease-luxury group"

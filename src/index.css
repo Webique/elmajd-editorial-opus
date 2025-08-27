@@ -2,93 +2,86 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ELMAJD GROUP - Luxury Design System 
-Mysterious, editorial aesthetic with minimal interactions.
-All colors MUST be HSL.
-*/
-
-/* Font loading optimization */
+/* Noto Kufi Arabic Font - Local Files */
 @font-face {
-  font-family: 'Poppins';
+  font-family: 'Noto Kufi Arabic';
+  src: url('/NotoKufiArabic-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
   font-display: swap;
-  font-weight: 300 700;
-  src: url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 }
 
 @font-face {
   font-family: 'Noto Kufi Arabic';
+  src: url('/NotoKufiArabic-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
   font-display: swap;
-  font-weight: 300 700;
-  src: url('https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@300;400;500;600;700&display=swap');
+}
+
+/* ELMAJD GROUP - Luxury Design System */
+:root {
+  /* Core Brand Colors */
+  --background: 139 35% 14%; /* rgba(22,49,39,255) - deep green */
+  --foreground: 0 0% 100%; /* white text */
+  --brand-green: 139 35% 14%; /* rgba(22,49,39,255) */
+  --brand-green-muted: 139 35% 14%;
+  
+  /* Typography Colors */
+  --text-primary: 0 0% 100%; /* white */
+  --text-secondary: 0 0% 100%; /* white */
+  --text-muted: 0 0% 90%; /* light white */
+  
+  /* Subtle Dividers */
+  --divider: 0 0% 100%; /* white */
+  --divider-light: 0 0% 100%; /* white */
+  
+  /* Background variations */
+  --surface: 139 35% 14%; /* deep green */
+  --surface-soft: 139 35% 14%; /* deep green */
+
+  /* Standard tokens for components */
+  --card: 139 35% 14%; /* deep green */
+  --card-foreground: 0 0% 100%; /* white */
+  --popover: 139 35% 14%; /* deep green */
+  --popover-foreground: 0 0% 100%; /* white */
+  --primary: 139 35% 14%; /* deep green */
+  --primary-foreground: 0 0% 100%; /* white */
+  --secondary: 139 35% 14%; /* deep green */
+  --secondary-foreground: 0 0% 100%; /* white */
+  --muted: 139 35% 14%; /* deep green */
+  --muted-foreground: 0 0% 90%; /* light white */
+  --accent: 139 35% 14%; /* deep green */
+  --accent-foreground: 0 0% 100%; /* white */
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 0 0% 100%; /* white */
+  --input: 0 0% 100%; /* white */
+  --ring: 0 0% 100%; /* white */
+  --radius: 0.5rem;
+  
+  /* Custom Animation Easing */
+  --ease-luxury: cubic-bezier(0.22, 0.61, 0.36, 1);
+  
+  /* Typography Scale */
+  --font-display: 'Playfair Display', serif;
+  --font-display-ar: 'Noto Kufi Arabic', serif;
+  --font-body: 'Helvetica Neue', 'Arial', sans-serif;
+  --font-body-ar: 'Noto Kufi Arabic', serif;
+
+  --sidebar-background: 139 35% 14%; /* deep green */
+  --sidebar-foreground: 0 0% 100%; /* white */
+  --sidebar-primary: 139 35% 14%; /* deep green */
+  --sidebar-primary-foreground: 0 0% 100%; /* white */
+  --sidebar-accent: 139 35% 14%; /* deep green */
+  --sidebar-accent-foreground: 0 0% 100%; /* white */
+  --sidebar-border: 0 0% 100%; /* white */
+  --sidebar-ring: 0 0% 100%; /* white */
 }
 
 @layer base {
-  :root {
-    /* Core Brand Colors */
-    --background: 139 35% 14%; /* rgba(22,49,39,255) - deep green */
-    --foreground: 0 0% 100%; /* white text */
-    --brand-green: 139 35% 14%; /* rgba(22,49,39,255) */
-    --brand-green-muted: 139 35% 14%;
-    
-    /* Typography Colors */
-    --text-primary: 0 0% 100%; /* white */
-    --text-secondary: 0 0% 100%; /* white */
-    --text-muted: 0 0% 90%; /* light white */
-    
-    /* Subtle Dividers */
-    --divider: 0 0% 100%; /* white */
-    --divider-light: 0 0% 100%; /* white */
-    
-    /* Background variations */
-    --surface: 139 35% 14%; /* deep green */
-    --surface-soft: 139 35% 14%; /* deep green */
-
-    /* Standard tokens for components */
-    --card: 139 35% 14%; /* deep green */
-    --card-foreground: 0 0% 100%; /* white */
-    --popover: 139 35% 14%; /* deep green */
-    --popover-foreground: 0 0% 100%; /* white */
-    --primary: 139 35% 14%; /* deep green */
-    --primary-foreground: 0 0% 100%; /* white */
-    --secondary: 139 35% 14%; /* deep green */
-    --secondary-foreground: 0 0% 100%; /* white */
-    --muted: 139 35% 14%; /* deep green */
-    --muted-foreground: 0 0% 90%; /* light white */
-    --accent: 139 35% 14%; /* deep green */
-    --accent-foreground: 0 0% 100%; /* white */
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 100%; /* white */
-    --input: 0 0% 100%; /* white */
-    --ring: 0 0% 100%; /* white */
-    --radius: 0.5rem;
-    
-    /* Custom Animation Easing */
-    --ease-luxury: cubic-bezier(0.22, 0.61, 0.36, 1);
-    
-    /* Typography Scale */
-    --font-display: 'Poppins', sans-serif;
-    --font-display-ar: 'Reem Kufi', sans-serif;
-    --font-body: 'Poppins', sans-serif;
-    --font-body-ar: 'Reem Kufi', sans-serif;
-
-    --sidebar-background: 139 35% 14%; /* deep green */
-    --sidebar-foreground: 0 0% 100%; /* white */
-    --sidebar-primary: 139 35% 14%; /* deep green */
-    --sidebar-primary-foreground: 0 0% 100%; /* white */
-    --sidebar-accent: 139 35% 14%; /* deep green */
-    --sidebar-accent-foreground: 0 0% 100%; /* white */
-    --sidebar-border: 0 0% 100%; /* white */
-    --sidebar-ring: 0 0% 100%; /* white */
-  }
-
   * {
     @apply border-border;
-  }
-
-  /* Global font application for entire website */
-  html, body, #root, * {
-    font-family: var(--font-body);
   }
 
   html {
@@ -101,7 +94,7 @@ All colors MUST be HSL.
   body {
     @apply bg-black text-foreground;
     font-family: var(--font-body);
-    font-weight: 600;
+    font-weight: 300;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background-color: black;
@@ -110,68 +103,30 @@ All colors MUST be HSL.
     min-height: 100vh;
   }
 
-  /* Global font application */
-  * {
-    font-family: inherit;
-  }
-
-  /* Ensure all text elements use the correct fonts */
-  h1, h2, h3, h4, h5, h6, p, span, div, a, button, input, textarea, label {
-    font-family: var(--font-body);
-  }
-
-  /* Apply display fonts to headings */
-  h1, h2, h3 {
-    font-family: var(--font-display);
-    font-weight: 700;
-  }
-
   /* Ensure root element is black */
   #root {
     background-color: black;
     min-height: 100vh;
   }
   
-  /* Arabic Typography */
-  [dir="rtl"] {
-    font-family: var(--font-body-ar);
-  }
-
-  /* Comprehensive font application for all elements */
-  *, *::before, *::after {
-    font-family: var(--font-body);
-  }
-
-  /* Ensure specific elements use correct fonts */
-  h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-display);
-    font-weight: 700;
-  }
-
-  p, span, div, a, button, input, textarea, label, li, td, th {
-    font-family: var(--font-body);
-  }
-
-  /* Force font application to override any conflicting styles */
-  .font-display, h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-display) !important;
-  }
-
-  .font-body, p, span, div, a, button, input, textarea, label, li, td, th {
-    font-family: var(--font-body) !important;
-  }
-  
   /* Display Typography */
   .font-display {
     font-family: var(--font-display);
-    font-weight: 700;
-    letter-spacing: 0.01em;
-    line-height: 1.4;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    line-height: 1.3;
   }
   
   .font-display-ar {
-    font-family: var(--font-display-ar);
-    font-weight: 700;
+    font-family: 'Noto Kufi Arabic', serif !important;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    line-height: 1.4;
+  }
+  
+  .font-body-ar {
+    font-family: 'Noto Kufi Arabic', serif !important;
+    font-weight: 400;
     letter-spacing: 0.01em;
     line-height: 1.4;
   }
@@ -290,202 +245,10 @@ img {
   will-change: opacity, transform;
 }
 
-/* Font optimization for Poppins and Reem Kufi */
-.font-display, .font-body {
-  font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
-  text-rendering: optimizeLegibility;
-}
-
-.font-display-ar, .font-body-ar {
-  font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
-  text-rendering: optimizeLegibility;
-}
-
-/* Ensure proper font fallbacks */
-.font-display {
-  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-}
-
-.font-body {
-  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-}
-
-.font-display-ar {
-  font-family: 'Reem Kufi', 'Amiri', 'IBM Plex Sans Arabic', sans-serif;
-}
-
-.font-body-ar {
-  font-family: 'Reem Kufi', 'Amiri', 'IBM Plex Sans Arabic', sans-serif;
-}
-
-/* RTL Support for slide indicators */
-[dir="rtl"] .slide-indicators {
-  flex-direction: row-reverse;
-}
-
-[dir="rtl"] .slide-indicators > * + * {
-  margin-right: 0.75rem;
-  margin-left: 0;
-}
-
-/* Smooth scroll transition effects */
-.scroll-transition {
-  transition: all 0.8s cubic-bezier(0.22, 0.61, 0.36, 1);
-}
-
-/* Enhanced visual connection between sections */
-.section-connector {
-  position: relative;
-  overflow: hidden;
-}
-
-.section-connector::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 1px;
-  height: 100px;
-  background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.6), transparent);
-  z-index: 10;
-}
-
-/* Smooth fade transition for hero elements */
-.hero-text-transition {
-  opacity: 0;
-  transform: translateY(30px);
-  animation: heroTextFadeIn 1.2s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
-}
-
-@keyframes heroTextFadeIn {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* FINAL GLOBAL FONT APPLICATION - HIGH SPECIFICITY */
-html *, body *, #root * {
-  font-family: var(--font-body) !important;
-  font-weight: 600 !important;
-}
-
-html h1, html h2, html h3, html h4, html h5, html h6,
-body h1, body h2, body h3, body h4, body h5, body h6,
-#root h1, #root h2, #root h3, #root h4, #root h5, #root h6 {
-  font-family: var(--font-display) !important;
-  font-weight: 700 !important;
-}
-
-/* Mobile-specific logo sizing - HIGH PRIORITY */
-@media (max-width: 768px) {
-  .hero-logo img {
-    height: 600px !important;
-    width: auto !important;
-    max-height: 600px !important;
-    min-height: 600px !important;
-  }
-}
-
-/* ULTRA AGGRESSIVE MOBILE LOGO SIZING */
-@media (max-width: 768px) {
-  .hero-logo img,
-  .hero-logo img[src*="logo"],
-  img[alt="ELMAJD GROUP"] {
-    height: 800px !important;
-    width: auto !important;
-    max-height: 800px !important;
-    min-height: 800px !important;
-    transform: scale(2) !important;
-    zoom: 2 !important;
-  }
-}
-
-/* Force mobile logo size with viewport units */
-@media (max-width: 768px) {
-  .hero-logo img {
-    height: 80vh !important;
-    width: auto !important;
-    max-height: 80vh !important;
-    min-height: 80vh !important;
-  }
-}
-
-/* Mobile logo positioning - center and top */
-@media (max-width: 768px) {
-  .hero-logo {
-    top: 12% !important;
-    transform: translate(-50%, -50%) !important;
-    left: 50% !important;
-    position: absolute !important;
-  }
-  
-  .hero-logo img {
-    height: 65vh !important;
-    width: auto !important;
-    max-height: 65vh !important;
-    min-height: 65vh !important;
-  }
-}
-
-/* ULTRA AGGRESSIVE MOBILE OVERRIDE */
-@media (max-width: 768px) {
-  .hero-logo img,
-  .hero-logo img[src*="logo"],
-  img[alt="ELMAJD GROUP"],
-  .hero-logo img[style*="height"] {
-    height: 65vh !important;
-    width: auto !important;
-    max-height: 65vh !important;
-    min-height: 65vh !important;
-    transform: scale(1.2) !important;
-    zoom: 1.2 !important;
-  }
-}
-
-/* NUCLEAR OPTION - Force mobile logo size */
-@media (max-width: 768px) {
-  img[src*="logo1.png"],
-  img[alt="ELMAJD GROUP"],
-  .hero-logo img,
-  .hero-logo img[src*="logo"],
-  img[src*="logo"],
-  img[src*="logo1"],
-  img[src*="logo1.png"] {
-    height: 80vh !important;
-    width: auto !important;
-    max-height: 80vh !important;
-    min-height: 80vh !important;
-    transform: scale(1.5) !important;
-    zoom: 1.5 !important;
-    font-size: 80vh !important;
-    line-height: 80vh !important;
-  }
-}
-
-/* Laptop/Desktop logo - much smaller and at top */
-@media (min-width: 769px) {
-  .hero-logo {
-    top: 0 !important;
-    transform: translateX(-50%) !important;
-    left: 50% !important;
-    position: absolute !important;
-  }
-  
-  .hero-logo img {
-    height: 220px !important;
-    width: auto !important;
-    max-height: 220px !important;
-    min-height: 220px !important;
-    transform: none !important;
-  }
-}
-
-/* ULTRA HIGH SPECIFICITY ARABIC FONT APPLICATION */
+/* ULTRA HIGH SPECIFICITY ARABIC FONT APPLICATION - THIS WAS WORKING */
 html[dir="rtl"] *, body[dir="rtl"] *, #root[dir="rtl"] *,
 html [dir="rtl"] *, body [dir="rtl"] *, #root [dir="rtl"] * {
-  font-family: var(--font-body-ar) !important;
+  font-family: 'Noto Kufi Arabic', serif !important;
   font-weight: 600 !important;
 }
 
@@ -495,29 +258,74 @@ body[dir="rtl"] h1, body[dir="rtl"] h2, body[dir="rtl"] h3, body[dir="rtl"] h4, 
 html [dir="rtl"] h1, html [dir="rtl"] h2, html [dir="rtl"] h3, html [dir="rtl"] h4, html [dir="rtl"] h5, html [dir="rtl"] h6,
 body [dir="rtl"] h1, body [dir="rtl"] h2, body [dir="rtl"] h3, body [dir="rtl"] h4, body [dir="rtl"] h5, body [dir="rtl"] h6,
 #root [dir="rtl"] h1, #root [dir="rtl"] h2, #root [dir="rtl"] h3, #root [dir="rtl"] h4, #root [dir="rtl"] h5, #root [dir="rtl"] h6 {
-  font-family: var(--font-display-ar) !important;
+  font-family: 'Noto Kufi Arabic', serif !important;
   font-weight: 700 !important;
 }
 
 /* Additional Arabic font enforcement */
 [dir="rtl"] .font-display, [dir="rtl"] .font-body {
-  font-family: var(--font-body-ar) !important;
+  font-family: 'Noto Kufi Arabic', serif !important;
 }
 
 [dir="rtl"] .font-display-ar, [dir="rtl"] h1, [dir="rtl"] h2, [dir="rtl"] h3, [dir="rtl"] h4, [dir="rtl"] h5, [dir="rtl"] h6 {
-  font-family: var(--font-display-ar) !important;
+  font-family: 'Noto Kufi Arabic', serif !important;
 }
 
 /* Force Arabic fonts on all elements when RTL */
 [dir="rtl"] p, [dir="rtl"] span, [dir="rtl"] div, [dir="rtl"] a, [dir="rtl"] button, [dir="rtl"] input, [dir="rtl"] textarea, [dir="rtl"] label, [dir="rtl"] li, [dir="rtl"] td, [dir="rtl"] th {
-  font-family: var(--font-body-ar) !important;
+  font-family: 'Noto Kufi Arabic', serif !important;
 }
 
 /* Ensure Arabic fonts override any other font classes */
 [dir="rtl"] * {
-  font-family: var(--font-body-ar) !important;
+  font-family: 'Noto Kufi Arabic', serif !important;
 }
 
 [dir="rtl"] h1, [dir="rtl"] h2, [dir="rtl"] h3, [dir="rtl"] h4, [dir="rtl"] h5, [dir="rtl"] h6 {
-  font-family: var(--font-display-ar) !important;
+  font-family: 'Noto Kufi Arabic', serif !important;
+}
+
+/* Force Arabic font classes to work */
+.font-display-ar {
+  font-family: 'Noto Kufi Arabic', serif !important;
+}
+
+.font-body-ar {
+  font-family: 'Noto Kufi Arabic', serif !important;
+}
+
+/* LOGO STYLING - CLEAN AND SIMPLE */
+/* Desktop logo - larger and higher */
+@media (min-width: 769px) {
+  .hero-logo {
+    top: 2% !important;
+    transform: translateX(-50%) !important;
+    left: 50% !important;
+    position: absolute !important;
+  }
+  
+  .hero-logo img {
+    height: 280px !important;
+    width: auto !important;
+    max-height: 280px !important;
+    min-height: 280px !important;
+  }
+}
+
+/* Mobile logo - much larger and higher */
+@media (max-width: 768px) {
+  .hero-logo {
+    top: 12% !important;
+    transform: translate(-50%, -50%) !important;
+    left: 50% !important;
+    position: absolute !important;
+  }
+  
+  .hero-logo img {
+    height: 120vh !important;
+    width: auto !important;
+    max-height: 120vh !important;
+    min-height: 120vh !important;
+    transform: scale(1.5) !important;
+  }
 }
